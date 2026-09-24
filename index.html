@@ -64,14 +64,35 @@
             <div id="screen-login" class="flex-1 flex flex-col items-center justify-center max-w-md mx-auto w-full text-center space-y-6">
                 <div>
                     <h1 class="text-3xl font-bold text-slate-800 mb-2">Welcome</h1>
-                    <p class="text-slate-500">Enter your full name to access your training dashboard and track progress.</p>
+                    <p class="text-slate-500">Select your name or choose Other to access your training dashboard.</p>
                 </div>
                 
                 <div class="w-full space-y-4">
                     <div class="text-left">
-                        <label class="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
-                        <input type="text" id="input-name" class="w-full p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-shadow outline-none" placeholder="e.g. Jane Doe">
+                        <label class="block text-sm font-medium text-slate-700 mb-1">User Name</label>
+                        <select id="user-select" class="w-full p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-shadow outline-none bg-white text-slate-700 font-medium">
+                            <option value="">-- Select your name --</option>
+                            <option value="Paula Grimm">Paula Grimm</option>
+                            <option value="Suzannah Holsenbeck">Suzannah Holsenbeck</option>
+                            <option value="Shitu Rajbhandari">Shitu Rajbhandari</option>
+                            <option value="Larry Ferguson">Larry Ferguson</option>
+                            <option value="Alex Hunter">Alex Hunter</option>
+                            <option value="Brittany Shelton">Brittany Shelton</option>
+                            <option value="Claudeliz Martinez">Claudeliz Martinez</option>
+                            <option value="Cynthia Beuns-Parker">Cynthia Beuns-Parker</option>
+                            <option value="Evelyn Tomasello">Evelyn Tomasello</option>
+                            <option value="Kascia Williams">Kascia Williams</option>
+                            <option value="Pam Katynski">Pam Katynski</option>
+                            <option value="Vicki Roberts">Vicki Roberts</option>
+                            <option value="Other">Other (Type your name)</option>
+                        </select>
                     </div>
+
+                    <div id="other-name-container" class="text-left hide">
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Type your exact full name</label>
+                        <input type="text" id="input-other-name" class="w-full p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-shadow outline-none" placeholder="e.g. Jane Doe">
+                    </div>
+
                     <div class="text-left">
                         <label class="block text-sm font-medium text-slate-700 mb-1">Date</label>
                         <input type="date" id="input-date" class="w-full p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-shadow outline-none text-slate-700">
@@ -190,18 +211,20 @@
                     {
                         q: "Where do you go to see every app you have access to, including custom apps like Book Requests?",
                         options: [
-                            { t: "The Apps menu", c: true },
                             { t: "Shortcuts menu", c: false },
-                            { t: "The Custom Apps menu", c: false }
+                            { t: "The Apps menu", c: true },
+                            { t: "The Custom Apps menu", c: false },
+                            { t: "Inventory app", c: false }
                         ],
-                        exp: "The Apps menu is Odoo's home screen: every tile there is an app you have access to."
+                        exp: "The Apps menu is Odoo's home screen: every tile there is an app you have access to, standard ones plus custom ones like Book Requests."
                     },
                     {
                         q: "What's the fastest way to jump straight to any app or record without using the mouse?",
                         options: [
-                            { t: "Press Ctrl+K (or Cmd+K on Mac)", c: true },
                             { t: "Type the exact URL", c: false },
-                            { t: "Ask OdooBot to redirect you", c: false }
+                            { t: "Ask OdooBot to redirect you", c: false },
+                            { t: "Press Ctrl+K (or Cmd+K on Mac)", c: true },
+                            { t: "Use arrows and enter keys to select the app", c: false }
                         ],
                         exp: "Ctrl+K (Cmd+K on Mac) opens the command palette, letting you search and jump anywhere in Odoo from the keyboard."
                     },
@@ -210,16 +233,18 @@
                         options: [
                             { t: "Preferences, under the Language field", c: true },
                             { t: "Discuss settings", c: false },
-                            { t: "The Apps menu", c: false }
+                            { t: "The Apps menue", c: false },
+                            { t: "The Settings app", c: false }
                         ],
                         exp: "Preferences includes a Language field where you can search for and select any language installed in the database."
                     },
                     {
                         q: "In Preferences, what can you choose for how you receive notifications?",
                         options: [
+                            { t: "SMS updates, or handle everything inside Odoo instead", c: false },
+                            { t: "Notifications can't be configured", c: false },
                             { t: "Email updates, or handle everything inside Odoo instead", c: true },
-                            { t: "Only by postal mail", c: false },
-                            { t: "Notifications can't be configured", c: false }
+                            { t: "SMS, or email updates", c: false }
                         ],
                         exp: "You can choose to get notifications by email or handle them entirely inside Odoo, whichever fits how you work."
                     },
@@ -228,72 +253,80 @@
                         options: [
                             { t: "Adds a second verification step when logging in", c: true },
                             { t: "Automatically saves every record you open", c: false },
-                            { t: "Lets two people share one account", c: false }
+                            { t: "Lets two people share one account", c: false },
+                            { t: "Changes the interface to dark mode", c: false }
                         ],
                         exp: "2FA adds an extra login verification step, which is recommended for anyone working with sensitive data like donor or family records."
                     },
                     {
                         q: "How do you permanently remove a record you no longer need?",
                         options: [
+                            { t: "Open the record and press the delete (or del) key", c: false },
                             { t: "Open the Actions menu and select Delete", c: true },
-                            { t: "Close the browser tab", c: false },
-                            { t: "Click Discard", c: false }
+                            { t: "Click Discard", c: false },
+                            { t: "Open the Actions menu and select Archive", c: false }
                         ],
-                        exp: "Deleting a record is done from the Actions menu and should be done carefully, since it can affect linked records like orders."
+                        exp: "Deleting a record is done from the Actions menu — and should be done carefully, since it can affect linked records like orders."
                     },
                     {
                         q: "What is the breadcrumb trail at the top-left of a page used for?",
                         options: [
-                            { t: "Letting you click back through the path you took to get here", c: true },
                             { t: "Logging out", c: false },
-                            { t: "Oppening current app settings menu", c: false }
+                            { t: "Oppening current app settings menu", c: false },
+                            { t: "Letting you click back through the path you took to get here", c: true },
+                            { t: "Just going back to the Apps menu", c: false }
                         ],
-                        exp: "The breadcrumb remembers your path: clicking an earlier step takes you right back to that screen, exactly where you left off."
+                        exp: "The breadcrumb remembers your path — clicking an earlier step takes you right back to that screen, exactly where you left off."
                     },
                     {
                         q: "In a list view, how do you sort records by a specific column?",
                         options: [
-                            { t: "Click the column header", c: true },
                             { t: "Group By that field", c: false },
-                            { t: "Use the command palette", c: false }
+                            { t: "Click the column header", c: true },
+                            { t: "Use the command palette", c: false },
+                            { t: "Open the symbol next to the headers and click the checkbox next to the column name", c: false }
                         ],
-                        exp: "Clicking a column header sorts by that column: click once for ascending, click again to reverse to descending."
+                        exp: "Clicking a column header sorts by column — click once for ascending, click again to reverse to descending."
                     },
                     {
                         q: "What's the difference between using a Filter and using Group By in a list view?",
                         options: [
-                            { t: "A filter narrows down which records show, Group By reorganizes all records into sections", c: true },
                             { t: "Group By deletes records; Filters only hide them", c: false },
-                            { t: "Filters only work on dates; Group By works on any field", c: false }
+                            { t: "Filters only work on dates; Group By works on any field", c: false },
+                            { t: "A filter narrows down which records show; Group By reorganizes all records into sections", c: true },
+                            { t: "There is no difference", c: false }
                         ],
                         exp: "Filtering reduces the record set to match a condition, while Group By keeps every record but organizes them into collapsible sections."
                     },
                     {
                         q: "None of the ready-made filters fit what you need. What should you use instead?",
                         options: [
-                            { t: "Add Custom Filter", c: true },
                             { t: "Delete the default filter", c: false },
-                            { t: "Use a Favorite filter", c: false }
+                            { t: "Use a Favorite filter", c: false },
+                            { t: "Add Custom Filter", c: true },
+                            { t: "Create a Custom Group", c: false }
                         ],
                         exp: "Add Custom Filter lets you pick a field, a comparison, and a value to build exactly the condition you need."
                     },
                     {
                         q: "You've built a filter and grouping combination you'll want to reuse in the future. What should you do?",
                         options: [
-                            { t: "Open the search dropdown and click Save current search", c: true },
                             { t: "Remember it and rebuild it manually every time", c: false },
-                            { t: "Take a screenshot of the list", c: false }
+                            { t: "Take a screenshot of the list", c: false },
+                            { t: "Open the search dropdown and click Save current search", c: true },
+                            { t: "Open the Actions menu and click Save current search", c: false }
                         ],
                         exp: "Save current search stores your filter and grouping combo as a Favorite, so you can reapply it in one click instead of rebuilding it."
                     },
                     {
                         q: "Once a search is saved, where do you find it again and how do you remove it if you no longer need it?",
                         options: [
-                            { t: "Under Favorites in the search dropdown; delete it from the edit favorite option", c: true },
                             { t: "Reload the app, it is now the default search; click the 'x' button to delete it", c: false },
-                            { t: "It can never be removed once saved", c: false }
+                            { t: "Under Favorites in the search dropdown; Delete it from the edit favorite option", c: true },
+                            { t: "It can never be removed once saved", c: false },
+                            { t: "Under Favorites in the search dropdown; Archive it from the edit favorite option", c: false }
                         ],
-                        exp: "Saved searches live under Favorites in the search dropdown, alongside any others already saved—you can edit or delete one from there."
+                        exp: "Saved searches live under Favorites in the search dropdown, alongside any others already saved — you can edit or delete one from there."
                     }
                 ]
             },
@@ -341,7 +374,6 @@
         function saveModuleProgress(modId, scorePercent) {
             if(!state.user.name) return;
             const progress = loadUserProgress();
-            // Guarda el puntaje más alto obtenido en el módulo
             if(!progress[modId] || scorePercent > progress[modId]) {
                 progress[modId] = scorePercent;
                 localStorage.setItem(getUserProgressKey(), JSON.stringify(progress));
@@ -366,10 +398,31 @@
         // --- INIT & LOGIN ---
         $('input-date').valueAsDate = new Date();
 
+        $('user-select').addEventListener('change', (e) => {
+            const val = e.target.value;
+            const otherContainer = $('other-name-container');
+            if(val === 'Other') {
+                otherContainer.classList.remove('hide');
+            } else {
+                otherContainer.classList.add('hide');
+                $('input-other-name').value = '';
+            }
+        });
+
         $('btn-login').addEventListener('click', () => {
-            const name = $('input-name').value.trim();
+            const selectedVal = $('user-select').value;
+            let name = "";
+            if(selectedVal === 'Other') {
+                name = $('input-other-name').value.trim();
+            } else {
+                name = selectedVal;
+            }
             const date = $('input-date').value;
-            if(!name || !date) return alert('Please provide your name and date.');
+
+            if(!selectedVal) return alert('Please select your name from the list or choose Other.');
+            if(selectedVal === 'Other' && !name) return alert('Please type your exact full name.');
+            if(!date) return alert('Please provide the training date.');
+
             state.user = { name, date };
             $('header-user-info').classList.remove('hide');$('header-name').textContent = name;
             renderDashboard();
@@ -378,8 +431,9 @@
 
         $('btn-logout').addEventListener('click', () => {
             state.user = { name: "", date: "" };
-            $('input-name').value = "";
-            $('header-user-info').classList.add('hide');
+            $('user-select').value = "";
+            $('input-other-name').value = "";
+            $('other-name-container').classList.add('hide');$('header-user-info').classList.add('hide');
             showScreen('login');
         });
 
@@ -558,7 +612,6 @@
             const percentage = Math.round((state.score / total) * 100);
             const passed = percentage >= 60;
             
-            // Guardar en navegador local del usuario
             saveModuleProgress(state.currentModule.id, percentage);
 
             $('score-value').textContent = percentage;
@@ -575,7 +628,7 @@
                 titleEl.className = "text-3xl font-bold text-emerald-800 mb-2";
                 msgEl.innerHTML = `You have successfully completed <strong>${state.currentModule.title}</strong> and your progress has been saved.`;
                 iconEl.innerHTML = `<div class="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto text-emerald-600"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>`;
-                btnRetry.classList.remove('hide'); // Permitir que lo vuelvan a tomar si gustan
+                btnRetry.classList.remove('hide');
                 btnRetry.textContent = "Retake Module";
             } else {
                 titleEl.textContent = "Almost there!";
@@ -604,12 +657,6 @@
             const syncEl = $('sync-status');
             syncEl.innerHTML = `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Saving progress...`;
             syncEl.className = "text-sm font-semibold text-indigo-600 mb-6 flex items-center justify-center";
-            
-            if(WEBHOOK_URL === "PEGAR_URL_AQUI") {
-                syncEl.innerHTML = "Progress tracked locally";
-                syncEl.className = "text-sm font-semibold text-slate-400 mb-6 flex items-center justify-center";
-                return;
-            }
 
             fetch(WEBHOOK_URL, {
                 method: 'POST',
