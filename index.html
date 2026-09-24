@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,10 +18,9 @@
         .option-card:hover { border-color: #cbd5e1; background-color: #f8fafc; }
         .option-card.selected { border-color: #6366f1; background-color: #eef2ff; }
         
-        /* Iframe Responsive Container */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             border-radius: 12px;
@@ -49,8 +47,9 @@
                <img src="logo+text 4.png" alt="Company Logo" class="h-8 object-contain" onerror="this.style.display='none'">
                <span class="font-bold text-slate-700 text-lg border-l-2 border-slate-200 pl-3">Training</span>
             </div>
-            <div id="header-user-info" class="hide text-sm font-semibold text-slate-500">
-                <span id="header-name"></span>
+            <div id="header-user-info" class="hide text-sm font-semibold text-slate-500 flex items-center gap-3">
+                <span id="header-name" class="text-indigo-600"></span>
+                <button id="btn-logout" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-600 px-2.5 py-1 rounded transition-colors">Switch User</button>
             </div>
         </header>
 
@@ -65,7 +64,7 @@
             <div id="screen-login" class="flex-1 flex flex-col items-center justify-center max-w-md mx-auto w-full text-center space-y-6">
                 <div>
                     <h1 class="text-3xl font-bold text-slate-800 mb-2">Welcome</h1>
-                    <p class="text-slate-500">Please enter your details to track your progress.</p>
+                    <p class="text-slate-500">Enter your full name to access your training dashboard and track progress.</p>
                 </div>
                 
                 <div class="w-full space-y-4">
@@ -88,7 +87,7 @@
             <div id="screen-dashboard" class="hide flex-1 flex flex-col">
                 <div class="mb-8">
                     <h2 class="text-2xl font-bold text-slate-800">Your Modules</h2>
-                    <p class="text-slate-500">Select a module below to begin training.</p>
+                    <p class="text-slate-500">Select a module below to train or retake assessments.</p>
                 </div>
                 <div id="module-list" class="grid gap-4 md:grid-cols-2">
                     <!-- Modules injected by JS -->
@@ -153,7 +152,7 @@
 
                 <div class="flex gap-4 w-full">
                      <button id="btn-retry" class="hide btn flex-1 bg-white border border-slate-300 text-slate-700 font-semibold py-3 rounded-lg hover:bg-slate-50">
-                        Try Again
+                        Review Video & Retake
                     </button>
                     <button id="btn-finish" class="btn flex-1 bg-slate-800 text-white font-semibold py-3 rounded-lg hover:bg-slate-900 shadow-md">
                         Back to Modules
@@ -180,13 +179,12 @@
 
     <script>
         // --- CONFIGURATION ---
-        const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbykjteQSScW3hk9IZv8EIiTc5JzQhgeDyokaQ6zrjvuRONWmAaMJKlJVduz-2fvQnJs/exec"; 
+        const WEBHOOK_URL = "PEGAR_URL_AQUI"; 
 
         const modules = [
             {
                 id: 'mod1',
                 title: "1. Odoo Navigation Basics & List Views",
-                // Modified GDrive link to preview format for iframe
                 videoUrl: "https://drive.google.com/file/d/1ulWsJY9u6avNU467_eDHQdT6_KypCrFE/preview", 
                 questions: [
                     {
@@ -318,7 +316,7 @@
             { id: 'mod18', title: "18. Creating new pivot tables", videoUrl: "", questions: [] }
         ];
 
-        // --- STATE ---
+        // --- STATE & LOCAL STORAGE ---
         let state = {
             user: { name: "", date: "" },
             currentModule: null,
@@ -326,6 +324,29 @@
             score: 0,
             selectedOpt: null
         };
+
+        function getUserProgressKey() {
+            return 'odoo_training_' + state.user.name.trim().toLowerCase().replace(/\s+/g, '_');
+        }
+
+        function loadUserProgress() {
+            try {
+                const data = localStorage.getItem(getUserProgressKey());
+                return data ? JSON.parse(data) : {};
+            } catch(e) {
+                return {};
+            }
+        }
+
+        function saveModuleProgress(modId, scorePercent) {
+            if(!state.user.name) return;
+            const progress = loadUserProgress();
+            // Guarda el puntaje más alto obtenido en el módulo
+            if(!progress[modId] || scorePercent > progress[modId]) {
+                progress[modId] = scorePercent;
+                localStorage.setItem(getUserProgressKey(), JSON.stringify(progress));
+            }
+        }
 
         // --- DOM UTILS ---
         const $ = id => document.getElementById(id);
@@ -343,7 +364,6 @@
         }
 
         // --- INIT & LOGIN ---
-        // Set today's date as default
         $('input-date').valueAsDate = new Date();
 
         $('btn-login').addEventListener('click', () => {
@@ -351,28 +371,45 @@
             const date = $('input-date').value;
             if(!name || !date) return alert('Please provide your name and date.');
             state.user = { name, date };
-            $('header-user-info').classList.remove('hide');
-            $('header-name').textContent = name;
+            $('header-user-info').classList.remove('hide');$('header-name').textContent = name;
             renderDashboard();
             showScreen('dashboard');
+        });
+
+        $('btn-logout').addEventListener('click', () => {
+            state.user = { name: "", date: "" };
+            $('input-name').value = "";
+            $('header-user-info').classList.add('hide');
+            showScreen('login');
         });
 
         // --- DASHBOARD ---
         function renderDashboard() {
             const list = $('module-list');
             list.innerHTML = '';
+            const progress = loadUserProgress();
+
             modules.forEach(mod => {
                 const isReady = mod.questions && mod.questions.length > 0;
+                const score = progress[mod.id];
+                const isCompleted = score !== undefined && score >= 60;
+                
                 const card = document.createElement('div');
                 card.className = `card p-5 flex flex-col justify-between ${isReady ? 'module-card cursor-pointer' : 'opacity-60 bg-slate-50'}`;
+                
+                let badgeHTML = `<span class="text-xs font-semibold px-2 py-1 rounded bg-slate-100 text-slate-600">${mod.questions.length} Questions</span>`;
+                if(isCompleted) {
+                    badgeHTML = `<span class="text-xs font-bold px-2 py-1 rounded bg-emerald-100 text-emerald-700 flex items-center gap-1">✓ Completed (${score}%)</span>`;
+                } else if(score !== undefined && score < 60) {
+                    badgeHTML = `<span class="text-xs font-bold px-2 py-1 rounded bg-amber-100 text-amber-700">Review Recommended (${score}%)</span>`;
+                }
+
                 card.innerHTML = `
                     <div class="mb-4">
                         <h3 class="font-bold text-slate-800 leading-snug">${mod.title}</h3>
                     </div>
                     <div class="flex items-center justify-between mt-auto">
-                        <span class="text-xs font-semibold px-2 py-1 rounded bg-slate-100 text-slate-600">
-                            ${isReady ? `${mod.questions.length} Questions` : 'Pending Content'}
-                        </span>
+                        ${badgeHTML}
                         ${isReady ? '<span class="text-indigo-600 font-bold text-sm">Start →</span>' : ''}
                     </div>
                 `;
@@ -388,9 +425,8 @@
             state.currentModule = mod;
             $('video-title').textContent = mod.title;
             
-            // Build the iframe safely
             const vWrap = $('video-wrapper');
-            vWrap.innerHTML = ''; // clear previous
+            vWrap.innerHTML = '';
             if(mod.videoUrl) {
                 const iframe = document.createElement('iframe');
                 iframe.src = mod.videoUrl;
@@ -419,12 +455,10 @@
             const qData = mod.questions[state.qIndex];
             state.selectedOpt = null;
             
-            // Update UI
             setProgress(((state.qIndex) / mod.questions.length) * 100);
             $('quiz-counter').textContent = `Question ${state.qIndex + 1} of ${mod.questions.length}`;
             $('question-text').textContent = qData.q;
             
-            // Reset buttons
             const btnCheck = $('btn-check');
             btnCheck.disabled = true;
             btnCheck.className = "btn w-full bg-slate-200 text-slate-400 font-semibold py-3 rounded-lg cursor-not-allowed transition-colors";
@@ -432,11 +466,10 @@
             
             $('feedback-overlay').classList.add('hide');
             
-            // Options
             const container = $('options-container');
             container.innerHTML = '';
             
-            shuffle([...qData.options]).forEach((opt, idx) => {
+            shuffle([...qData.options]).forEach((opt) => {
                 const div = document.createElement('div');
                 div.className = "option-card flex items-start gap-4";
                 div.innerHTML = `
@@ -447,7 +480,7 @@
                 `;
                 
                 div.addEventListener('click', () => {
-                    if($('feedback-overlay').classList.contains('hide') === false) return; // Prevent change if checked
+                    if($('feedback-overlay').classList.contains('hide') === false) return;
                     
                     container.querySelectorAll('.option-card').forEach(c => {
                         c.classList.remove('selected');
@@ -476,7 +509,6 @@
             
             if(isCorrect) state.score++;
             
-            // Show Feedback
             const overlay = $('feedback-overlay');
             const icon = $('fb-icon');
             const btnNext = $('btn-next');
@@ -484,7 +516,7 @@
             overlay.classList.remove('hide', 'border-t-emerald-500', 'border-t-rose-500');
             
             if(isCorrect) {
-                overlay.style.backgroundColor = '#ecfdf5'; // emerald-50
+                overlay.style.backgroundColor = '#ecfdf5';
                 overlay.style.borderTopColor = '#10b981';
                 icon.className = "w-8 h-8 rounded-full flex items-center justify-center font-bold text-white bg-emerald-500";
                 icon.innerHTML = "✓";
@@ -494,7 +526,7 @@
                 $('fb-text').className = "text-emerald-700 text-sm mt-1";
                 btnNext.className = "btn w-full sm:w-auto px-8 py-3 rounded-lg font-bold text-white shadow-md bg-emerald-600 hover:bg-emerald-700";
             } else {
-                overlay.style.backgroundColor = '#fff1f2'; // rose-50
+                overlay.style.backgroundColor = '#fff1f2';
                 overlay.style.borderTopColor = '#f43f5e';
                 icon.className = "w-8 h-8 rounded-full flex items-center justify-center font-bold text-white bg-rose-500";
                 icon.innerHTML = "✕";
@@ -526,6 +558,9 @@
             const percentage = Math.round((state.score / total) * 100);
             const passed = percentage >= 60;
             
+            // Guardar en navegador local del usuario
+            saveModuleProgress(state.currentModule.id, percentage);
+
             $('score-value').textContent = percentage;
             $('score-raw').textContent = `${state.score} of ${total}`;
             $('score-value').className = `text-4xl font-extrabold ${passed ? 'text-emerald-600' : 'text-amber-600'}`;
@@ -538,15 +573,17 @@
             if(passed) {
                 titleEl.textContent = "Great job!";
                 titleEl.className = "text-3xl font-bold text-emerald-800 mb-2";
-                msgEl.innerHTML = `You have successfully completed <strong>${state.currentModule.title}</strong>.`;
+                msgEl.innerHTML = `You have successfully completed <strong>${state.currentModule.title}</strong> and your progress has been saved.`;
                 iconEl.innerHTML = `<div class="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto text-emerald-600"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>`;
-                btnRetry.classList.add('hide');
+                btnRetry.classList.remove('hide'); // Permitir que lo vuelvan a tomar si gustan
+                btnRetry.textContent = "Retake Module";
             } else {
                 titleEl.textContent = "Almost there!";
                 titleEl.className = "text-3xl font-bold text-amber-800 mb-2";
-                msgEl.innerHTML = `It looks like some concepts were a bit tricky. We highly recommend reviewing the video and trying the quiz one more time to strengthen your knowledge!`;
+                msgEl.innerHTML = `It looks like some concepts were a bit tricky. We highly recommend reviewing the video and trying the quiz again.`;
                 iconEl.innerHTML = `<div class="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center mx-auto text-amber-600"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>`;
                 btnRetry.classList.remove('hide');
+                btnRetry.textContent = "Review Video & Retake";
             }
 
             sendWebhook(percentage);
@@ -555,10 +592,13 @@
         $('btn-retry').addEventListener('click', () => {
             state.qIndex = 0;
             state.score = 0;
-            showScreen('video'); // Take them back to the video to review
+            showScreen('video');
         });
 
-        $('btn-finish').addEventListener('click', () => showScreen('dashboard'));
+        $('btn-finish').addEventListener('click', () => {
+            renderDashboard();
+            showScreen('dashboard');
+        });
 
         function sendWebhook(percentage) {
             const syncEl = $('sync-status');
@@ -566,10 +606,8 @@
             syncEl.className = "text-sm font-semibold text-indigo-600 mb-6 flex items-center justify-center";
             
             if(WEBHOOK_URL === "PEGAR_URL_AQUI") {
-                setTimeout(() => {
-                    syncEl.innerHTML = "Progress tracked (Local Mode)";
-                    syncEl.className = "text-sm font-semibold text-slate-400 mb-6 flex items-center justify-center";
-                }, 1000);
+                syncEl.innerHTML = "Progress tracked locally";
+                syncEl.className = "text-sm font-semibold text-slate-400 mb-6 flex items-center justify-center";
                 return;
             }
 
