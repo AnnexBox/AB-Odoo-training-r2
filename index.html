@@ -331,7 +331,113 @@
                 ]
             },
             { id: 'mod2', title: "2. Understanding Contacts", videoUrl: "", questions: [] },
-            { id: 'mod3', title: "3. Filters vs. Reports & Views", videoUrl: "", questions: [] },
+            {
+                id: 'mod3',
+                title: "3. Filters vs. Reports & Views",
+                videoUrl: "https://drive.google.com/file/d/1vRAYBwgJKbdtMV32AHsCCRMupFOMztIj/preview",
+                questions: [
+                    {
+                        q: "What is the primary function of a view in Odoo, such as switching from List to Kanban?",
+                        options: [
+                            { t: "It updates the underlying database values associated with the displayed records.", c: false },
+                            { t: "It filters out records that do not meet specific layout conditions.", c: false },
+                            { t: "It hides non-numeric columns from being viewed by other users.", c: false },
+                            { t: "It changes how the same set of records is displayed without adding or removing data.", c: true }
+                        ],
+                        exp: "Changing views alters the layout and presentation format of the records while preserving the exact same record set and count."
+                    },
+                    {
+                        q: "How do filters interact with views in Odoo?",
+                        options: [
+                            { t: "Filters remain active and can be combined independently with any view.", c: true },
+                            { t: "Applying a filter automatically resets the current view back to List view.", c: false },
+                            { t: "Filters replace the need to select optional columns in the interface.", c: false },
+                            { t: "Filters can only be applied when working within Reporting views.", c: false }
+                        ],
+                        exp: "Filters operate independently of display layouts, allowing any active filter to persist when switching between different views."
+                    },
+                    {
+                        q: "What defines a 'report' in Odoo compared to a standard List or Kanban view?",
+                        options: [
+                            { t: "It is a specialized view designed for data analysis rather than reading individual records one by one.", c: true },
+                            { t: "It is a static document that cannot be filtered or manipulated by the user.", c: false },
+                            { t: "It is an external spreadsheet generated outside of the Odoo framework.", c: false },
+                            { t: "It is a permission level that restricts record modification for standard users.", c: false }
+                        ],
+                        exp: "Reports group and aggregate data into analytical structures like charts and pivot tables rather than showing record-by-record lists."
+                    },
+                    {
+                        q: "Which type of fields can be calculated under the 'Measures' menu in Pivot view?",
+                        options: [
+                            { t: "Only date and timestamp fields", c: false },
+                            { t: "Only numeric fields", c: true },
+                            { t: "Any field selected as an optional column", c: false },
+                            { t: "Only text and string fields", c: false }
+                        ],
+                        exp: "Pivot calculations rely on mathemathical aggregation, which requires numeric values like quantities or amounts."
+                    },
+                    {
+                        q: "How can a user create a nested breakdown in Pivot view?",
+                        options: [
+                            { t: "By clicking the plus icon to add a group, and then adding another group inside it.", c: true },
+                            { t: "By enabling all optional columns in the header settings.", c: false },
+                            { t: "By selecting multiple saved favorites at the same time.", c: false },
+                            { t: "By switching repeatedly between Graph view and List view.", c: false }
+                        ],
+                        exp: "Nested breakdowns are formed by sequentially adding groups within existing group levels using the plus icon."
+                    },
+                    {
+                        q: "Which format can Pivot views be directly exported to using the built-in download button?",
+                        options: [
+                            { t: "Excel file", c: true },
+                            { t: "PNG image", c: false },
+                            { t: "PDF Document", c: false },
+                            { t: "CSV file", c: false }
+                        ],
+                        exp: "The dowload option in Pivot view allows users to export aggregated table data directly into an Excel spreadsheet."
+                    },
+                    {
+                        q: "Which three chart types are available in Graph view for analyzing data?",
+                        options: [
+                            { t: "Scatter plots, bubble charts, and radar charts", c: false },
+                            { t: "Gantt charts, waterfall charts, and area charts", c: false },
+                            { t: "Funnel charts, heat maps, and tree maps", c: false },
+                            { t: "Bar charts, line charts, and pie charts", c: true }
+                        ],
+                        exp: "Graph view provides bar charts for proportional distributions."
+                    },
+                    {
+                        q: "Where can a user locate the controls to show or hide optional columns in List view?",
+                        options: [
+                            { t: "Inside the main Reporting dropdown menu", c: false },
+                            { t: "In the view switcher located at the bottom of the screen", c: false },
+                            { t: "At the end of the column headers", c: true },
+                            { t: "Under the Measures dropdown in Pivot view", c: false }
+                        ],
+                        exp: "A small icon positioned at the far end of table column headers opens the toggle menu for optional columns."
+                    },
+                    {
+                        q: "What happens to your customized column choices when you apply a saved favorite filter?",
+                        options: [
+                            { t: "The visible columns remain exactly as you set them.", c: true },
+                            { t: "The view automatically switches from List to Pivot view.", c: false },
+                            { t: "All optional columns are automatically hidden.", c: false },
+                            { t: "The visible columns reset to the default configuration of the saved favorite.", c: false }
+                        ],
+                        exp: "Column selection are personal screen settings that are independent of filters and groupings."
+                    },
+                    {
+                        q: "How can a user access Graph or Pivot views without entering the Reporting menu?",
+                        options: [
+                            { t: "By enabling optional numeric columns in the header settings.", c: false },
+                            { t: "By exporting the list view directly into an Excel document.", c: false },
+                            { t: "By selecting the Pivot or Graph icons in the top-right view switcher of the app.", c: true },
+                            { t: "By applying a saved favorite search criteria.", c: false }
+                        ],
+                        exp: "The view switcher in the upper-right corner allows users to switch Pivot or Graph views directly from standard app screens (if available for that app)."
+                    }
+                ]
+            },
             { id: 'mod4', title: "4. Book Request Lifecycle & Workflow", videoUrl: "", questions: [] },
             { id: 'mod5', title: "5. Entering BFK data & daily order entry", videoUrl: "", questions: [] },
             { id: 'mod6', title: "6. Looking up customer orders", videoUrl: "", questions: [] },
