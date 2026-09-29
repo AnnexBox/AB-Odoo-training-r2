@@ -467,9 +467,9 @@
                         q: "Which of the following are required field on a new book request?",
                         options: [
                             { t: "Adult making the order and Receiving Household / Organization", c: false },
-                            { t: "Program, Initiative", c: true },
+                            { t: "Program, Initiative", c: false },
                             { t: "Delivery / Pick Up Date and Purpose", c: false },
-                            { t: "All of the above are requiered", c: false } // check if this option is always at the bottom
+                            { t: "All the fields mentioned in the other options are requiered", c: true }
                         ],
                         exp: "Program, Initiative, Purpose, Delivery / Pick Up Date, Adult Making the Order and Receiving Household / Organization are required. Fields like Delivery Type, Number of Books Requested, and Language are additional."
                     },
