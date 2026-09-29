@@ -438,7 +438,103 @@
                     }
                 ]
             },
-            { id: 'mod4', title: "4. Book Request Lifecycle & Workflow", videoUrl: "", questions: [] },
+            {
+                id: 'mod4',
+                title: "4. Book Request Lifecycle & Workflow",
+                videoUrl: "",
+                questions: [
+                    {
+                        q: "Which sequence describes the path every book request follows at Read to Grow?",
+                        options: [
+                            { t: "Create the request, confirm it, Odoo creates the delivery, and the request is marked Complete once the delivery is validated.", c: true },
+                            { t: "Create the delivery, confirm it, and then create the request from the delivery record.", c: false },
+                            { t: "Create the request, validate the delivery manually, and then mark the request Complete by hand.", c: false },
+                            { t: "Create the request, mark it Complete, and then create the delivery for the books.", c: false }
+                        ],
+                        exp: "Every request is created, confirmed, and then Odoo generates the delivery. When the books go out, the request completes."
+                    },
+                    {
+                        q: "Which field identifies the individual person placing the request?",
+                        options: [
+                            { t: "Receiving Household or Organization", c: false },
+                            { t: "Adult making the order", c: true },
+                            { t: "Child making the order", c: false },
+                            { t: "Adult processing the order", c: false }
+                        ],
+                        exp: "'Adult making the order' is the person placing the request, while 'Receiving Household or Organization' is the family or group that will actually receive the books."
+                    },
+                    {
+                        q: "Which of the following are required field on a new book request?",
+                        options: [
+                            { t: "Adult making the order and Receiving Household / Organization", c: false },
+                            { t: "Program, Initiative", c: true },
+                            { t: "Delivery / Pick Up Date and Purpose", c: false },
+                            { t: "All of the above are requiered", c: false } // check if this option is always at the bottom
+                        ],
+                        exp: "Program, Initiative, Purpose, Delivery / Pick Up Date, Adult Making the Order and Receiving Household / Organization are required. Fields like Delivery Type, Number of Books Requested, and Language are additional."
+                    },
+                    {
+                        q: "What does the 'Total Ordered' number count on a book request?",
+                        options: [
+                            { t: "Every line on the order", c: false },
+                            { t: "Only the items that are available for delivery", c: false },
+                            { t: "The number of order lines, regardless of quantity", c: false },
+                            { t: "Only the items categorized as books", c: true }
+                        ],
+                        exp: "Items categorized as something else can be on the order, but they are not counted in Total Ordered."
+                    },
+                    {
+                        q: "What happens when you click Confirm on a book request?",
+                        options: [
+                            { t: "The request is marked Complete and the books are removed from inventory.", c: false },
+                            { t: "Odoo saves the request and creates the delivery automatically, and the status becomes In Process.", c: true },
+                            { t: "The request is sent to the household for approval before anything is created.", c: false },
+                            { t: "Odoo saves the request, but you must create the delivery manually.", c: false }
+                        ],
+                        exp: "Confirming saves the request and automatically creates the delivery. 'In Process' means the request was received but the books haven't gone out yet."
+                    },
+                    {
+                        q: "You entered the wrong language edition of a book. What is the recommended way to fix it?",
+                        options: [
+                            { t: "Before confirming, edit the line and save; after confirming, you may need to cancel the request and create it again.", c: true },
+                            { t: "Always delete the delivery and create a new one from the Contacts app.", c: false },
+                            { t: "Validate the delivery first, then edit the line on the request.", c: false },
+                            { t: "Mark the request Complete and start a new one with the correct edition.", c: false }
+                        ],
+                        exp: "Before confirmation you can simply edit the line and save. After confirmation, changes may be restricted, so you may need to cancel and recreate the request."
+                    },
+                    {
+                        q: "What does clicking Validate on the delivery tell Odoo?",
+                        options: [
+                            { t: "That the request has been approved and can be confirmed.", c: false },
+                            { t: "That the request should be declined because a book is out of stock.", c: false },
+                            { t: "That the books have left the warehouse, so they are taken out of the inventory count.", c: true },
+                            { t: "That the household has paid for the books.", c: false }
+                        ],
+                        exp: "Validating the delivery records that the books left the warehouse and removes them from inventory. If some items are unavailable, Odoo offers to create a backorder."
+                    },
+                    {
+                        q: "How can you see every book request for a specific family or organization?",
+                        options: [
+                            { t: "Sort the Book Requests list by the Household column.", c: false },
+                            { t: "Open the Delivery record and check its history.", c: false },
+                            { t: "From the Inventory, open a product record and search for the family or organization.", c: false },
+                            { t: "Open the contact record and click the Book Requests button.", c: true }
+                        ],
+                        exp: "From a contact record, the Book Requests button shows every request associated with that family or organization."
+                    },
+                    {
+                        q: "After the books are delivered, how does a request change from In Process to Complete?",
+                        options: [
+                            { t: "You must click Mark Complete on the request.", c: false },
+                            { t: "It changes by itself once the delivery is validated.", c: true },
+                            { t: "You must click Reopen and then Confirm again.", c: false },
+                            { t: "It changes when the household confirms receipt in Contacts.", c: false }
+                        ],
+                        exp: "The status updates automatically after the delivery is completed, so there is no need to mark it Complete by hand."
+                    }
+                ]
+            },
             { id: 'mod5', title: "5. Entering BFK data & daily order entry", videoUrl: "", questions: [] },
             { id: 'mod6', title: "6. Looking up customer orders", videoUrl: "", questions: [] },
             { id: 'mod7', title: "7. Entering donated books", videoUrl: "", questions: [] },
