@@ -17,7 +17,7 @@
         .option-card { border: 2px solid #e2e8f0; border-radius: 8px; padding: 16px; cursor: pointer; transition: all 0.2s; }
         .option-card:hover { border-color: #cbd5e1; background-color: #f8fafc; }
         .option-card.selected { border-color: #6366f1; background-color: #eef2ff; }
-        
+
         .video-container {
             position: relative;
             padding-bottom: 56.25%;
@@ -27,6 +27,7 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             background: #000;
         }
+
         .video-container iframe {
             position: absolute;
             top: 0;
@@ -37,19 +38,24 @@
         }
     </style>
 </head>
+
 <body class="min-h-screen flex items-center justify-center p-4">
 
     <div id="app" class="w-full max-w-3xl min-h-[600px] flex flex-col bg-slate-50 rounded-2xl shadow-2xl overflow-hidden relative border border-slate-200">
-        
+
         <!-- HEADER -->
         <header class="bg-white px-6 py-4 border-b border-slate-200 flex items-center justify-between z-10 sticky top-0">
             <div class="flex items-center gap-3">
-               <img src="logo+text 4.png" alt="Company Logo" class="h-8 object-contain" onerror="this.style.display='none'">
-               <span class="font-bold text-slate-700 text-lg border-l-2 border-slate-200 pl-3">Training</span>
+                <img src="logo+text 4.png" alt="Company Logo" class="h-8 object-contain" onerror="this.style.display='none'">
+                <span class="font-bold text-slate-700 text-lg border-l-2 border-slate-200 pl-3">Training</span>
             </div>
+
             <div id="header-user-info" class="hide text-sm font-semibold text-slate-500 flex items-center gap-3">
                 <span id="header-name" class="text-indigo-600"></span>
-                <button id="btn-logout" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-600 px-2.5 py-1 rounded transition-colors">Switch User</button>
+
+                <button id="btn-logout" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-600 px-2.5 py-1 rounded transition-colors">
+                    Switch User
+                </button>
             </div>
         </header>
 
@@ -59,19 +65,24 @@
         </div>
 
         <main class="flex-1 overflow-y-auto p-6 flex flex-col relative bg-slate-50/50">
-            
+
             <!-- SCREEN 1: LOGIN -->
             <div id="screen-login" class="flex-1 flex flex-col items-center justify-center max-w-md mx-auto w-full text-center space-y-6">
+
                 <div>
                     <h1 class="text-3xl font-bold text-slate-800 mb-2">Welcome</h1>
-                    <p class="text-slate-500">Select your name or choose Other to access your training dashboard.</p>
+                    <p class="text-slate-500">Select your name to access your training dashboard.</p>
                 </div>
-                
+
                 <div class="w-full space-y-4">
+
                     <div class="text-left">
                         <label class="block text-sm font-medium text-slate-700 mb-1">User Name</label>
+
                         <select id="user-select" class="w-full p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-shadow outline-none bg-white text-slate-700 font-medium">
+
                             <option value="">-- Select your name --</option>
+
                             <option value="Paula Grimm">Paula Grimm</option>
                             <option value="Suzannah Holsenbeck">Suzannah Holsenbeck</option>
                             <option value="Shitu Rajbhandari">Shitu Rajbhandari</option>
@@ -84,800 +95,1839 @@
                             <option value="Kascia Williams">Kascia Williams</option>
                             <option value="Pam Katynski">Pam Katynski</option>
                             <option value="Vicki Roberts">Vicki Roberts</option>
-                            <option value="Other">Other (Type your name)</option>
-                        </select>
-                    </div>
 
-                    <div id="other-name-container" class="text-left hide">
-                        <label class="block text-sm font-medium text-slate-700 mb-1">Type your exact full name</label>
-                        <input type="text" id="input-other-name" class="w-full p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-shadow outline-none" placeholder="e.g. Jane Doe">
+                            <option value="Participant 1">Participant 1</option>
+                            <option value="Participant 2">Participant 2</option>
+                            <option value="Participant 3">Participant 3</option>
+
+                        </select>
                     </div>
 
                     <div class="text-left">
                         <label class="block text-sm font-medium text-slate-700 mb-1">Date</label>
-                        <input type="date" id="input-date" class="w-full p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-shadow outline-none text-slate-700">
+
+                        <input
+                            type="date"
+                            id="input-date"
+                            class="w-full p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-shadow outline-none text-slate-700"
+                        >
                     </div>
+
                 </div>
-                
+
                 <button id="btn-login" class="btn w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700 shadow-md">
                     Access Dashboard
                 </button>
+
             </div>
 
             <!-- SCREEN 2: DASHBOARD -->
             <div id="screen-dashboard" class="hide flex-1 flex flex-col">
+
                 <div class="mb-8">
                     <h2 class="text-2xl font-bold text-slate-800">Your Modules</h2>
                     <p class="text-slate-500">Select a module below to train or retake assessments.</p>
                 </div>
+
                 <div id="module-list" class="grid gap-4 md:grid-cols-2">
                     <!-- Modules injected by JS -->
                 </div>
+
             </div>
 
             <!-- SCREEN 3: VIDEO LEARNING -->
             <div id="screen-video" class="hide flex-1 flex flex-col">
+
                 <button class="btn-back text-indigo-600 font-semibold mb-4 inline-flex items-center hover:text-indigo-800 w-fit">
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+
                     Back to Modules
                 </button>
-                
-                <h2 id="video-title" class="text-2xl font-bold text-slate-800 mb-6">Module Title</h2>
-                
+
+                <h2 id="video-title" class="text-2xl font-bold text-slate-800 mb-6">
+                    Module Title
+                </h2>
+
                 <div id="video-wrapper" class="video-container mb-8">
                     <!-- Iframe injected by JS -->
                 </div>
-                
+
                 <div class="mt-auto pt-6 border-t border-slate-200 text-center">
-                    <p class="text-slate-500 mb-4 text-sm">Once you have finished the video, proceed to test your knowledge.</p>
+
+                    <p class="text-slate-500 mb-4 text-sm">
+                        Once you have finished the video, proceed to test your knowledge.
+                    </p>
+
                     <button id="btn-start-quiz" class="btn w-full md:w-auto md:px-12 bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700 shadow-md">
                         Start Assessment
                     </button>
+
                 </div>
+
             </div>
 
             <!-- SCREEN 4: QUIZ -->
             <div id="screen-quiz" class="hide flex-1 flex flex-col max-w-2xl mx-auto w-full">
+
                 <div class="mb-8">
-                    <span id="quiz-counter" class="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-2 block">Question 1 of X</span>
-                    <h2 id="question-text" class="text-xl font-bold text-slate-800">Question text...</h2>
+
+                    <span id="quiz-counter" class="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-2 block">
+                        Question 1 of X
+                    </span>
+
+                    <h2 id="question-text" class="text-xl font-bold text-slate-800">
+                        Question text...
+                    </h2>
+
                 </div>
-                
+
                 <div id="options-container" class="space-y-3 mb-8">
                     <!-- Options injected here -->
                 </div>
-                
+
                 <div class="mt-auto pt-4 flex flex-col items-center">
-                    <button id="btn-check" class="btn w-full bg-slate-200 text-slate-400 font-semibold py-3 rounded-lg cursor-not-allowed transition-colors" disabled>
+
+                    <button
+                        id="btn-check"
+                        class="btn w-full bg-slate-200 text-slate-400 font-semibold py-3 rounded-lg cursor-not-allowed transition-colors"
+                        disabled
+                    >
                         Check Answer
                     </button>
+
                 </div>
+
             </div>
 
             <!-- SCREEN 5: END / RESULTS -->
             <div id="screen-end" class="hide flex-1 flex flex-col items-center justify-center text-center max-w-md mx-auto">
+
                 <div id="sync-status" class="text-sm font-semibold text-slate-500 mb-6 flex items-center justify-center gap-2">
-                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+
+                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+
+                        <circle
+                            class="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            stroke-width="4"
+                        ></circle>
+
+                        <path
+                            class="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+
+                    </svg>
+
                     Saving progress...
+
                 </div>
-                
+
                 <div id="result-icon" class="mb-4"></div>
-                <h2 id="result-title" class="text-3xl font-bold text-slate-800 mb-2">Module Complete</h2>
+
+                <h2 id="result-title" class="text-3xl font-bold text-slate-800 mb-2">
+                    Module Complete
+                </h2>
+
                 <p id="result-message" class="text-slate-600 mb-8 leading-relaxed"></p>
-                
+
                 <div class="bg-white border border-slate-200 rounded-xl p-6 w-full shadow-sm mb-8">
-                    <p class="text-sm text-slate-500 uppercase tracking-wide font-bold mb-1">Final Score</p>
-                    <div class="text-4xl font-extrabold text-indigo-600"><span id="score-value">0</span>%</div>
-                    <p class="text-sm text-slate-400 mt-2"><span id="score-raw">0</span> correct answers</p>
+
+                    <p class="text-sm text-slate-500 uppercase tracking-wide font-bold mb-1">
+                        Final Score
+                    </p>
+
+                    <div class="text-4xl font-extrabold text-indigo-600">
+                        <span id="score-value">0</span>%
+                    </div>
+
+                    <p class="text-sm text-slate-400 mt-2">
+                        <span id="score-raw">0</span> correct answers
+                    </p>
+
                 </div>
 
                 <div class="flex gap-4 w-full">
-                     <button id="btn-retry" class="hide btn flex-1 bg-white border border-slate-300 text-slate-700 font-semibold py-3 rounded-lg hover:bg-slate-50">
+
+                    <button
+                        id="btn-retry"
+                        class="hide btn flex-1 bg-white border border-slate-300 text-slate-700 font-semibold py-3 rounded-lg hover:bg-slate-50"
+                    >
                         Review Video & Retake
                     </button>
-                    <button id="btn-finish" class="btn flex-1 bg-slate-800 text-white font-semibold py-3 rounded-lg hover:bg-slate-900 shadow-md">
+
+                    <button
+                        id="btn-finish"
+                        class="btn flex-1 bg-slate-800 text-white font-semibold py-3 rounded-lg hover:bg-slate-900 shadow-md"
+                    >
                         Back to Modules
                     </button>
+
                 </div>
+
             </div>
+
         </main>
-        
+
         <!-- OVERLAY FEEDBACK FOR QUIZ -->
         <div id="feedback-overlay" class="hide absolute bottom-0 left-0 w-full bg-white border-t border-slate-200 p-6 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] z-20 flex flex-col sm:flex-row items-center justify-between gap-4 transition-transform translate-y-0">
-             <div class="flex-1">
-                 <div class="flex items-center gap-3 mb-2">
-                     <div id="fb-icon" class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-white"></div>
-                     <h3 id="fb-title" class="text-xl font-bold"></h3>
-                 </div>
-                 <p id="fb-text" class="text-slate-600 text-sm leading-relaxed max-w-xl"></p>
-             </div>
-             <button id="btn-next" class="btn w-full sm:w-auto px-8 py-3 rounded-lg font-bold text-white shadow-md whitespace-nowrap">
-                 Continue
-             </button>
+
+            <div class="flex-1">
+
+                <div class="flex items-center gap-3 mb-2">
+
+                    <div id="fb-icon" class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-white"></div>
+
+                    <h3 id="fb-title" class="text-xl font-bold"></h3>
+
+                </div>
+
+                <p id="fb-text" class="text-slate-600 text-sm leading-relaxed max-w-xl"></p>
+
+            </div>
+
+            <button id="btn-next" class="btn w-full sm:w-auto px-8 py-3 rounded-lg font-bold text-white shadow-md whitespace-nowrap">
+                Continue
+            </button>
+
         </div>
 
     </div>
 
     <script>
+
         // --- CONFIGURATION ---
-        const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbykjteQSScW3hk9IZv8EIiTc5JzQhgeDyokaQ6zrjvuRONWmAaMJKlJVduz-2fvQnJs/exec"; 
+        const WEBHOOK_URL =
+            "https://script.google.com/macros/s/AKfycbykjteQSScW3hk9IZv8EIiTc5JzQhgeDyokaQ6zrjvuRONWmAaMJKlJVduz-2fvQnJs/exec";
+
 
         const modules = [
+
             {
                 id: 'mod1',
+
                 title: "1. Odoo Navigation Basics & List Views",
-                videoUrl: "https://drive.google.com/file/d/10auhGuaZe-MnkgBBVC6JIH5aoF-ppJID/preview", 
+
+                videoUrl:
+                    "https://drive.google.com/file/d/10auhGuaZe-MnkgBBVC6JIH5aoF-ppJID/preview",
+
                 questions: [
+
                     {
                         q: "Where do you go to see every app you have access to, including custom apps like Book Requests?",
+
                         options: [
                             { t: "Shortcuts menu", c: false },
                             { t: "The Apps menu", c: true },
                             { t: "The Custom Apps menu", c: false },
                             { t: "Inventory app", c: false }
                         ],
+
                         exp: "The Apps menu is Odoo's home screen: every tile there is an app you have access to, standard ones plus custom ones like Book Requests."
                     },
+
                     {
                         q: "What's the fastest way to jump straight to any app or record without using the mouse?",
+
                         options: [
                             { t: "Type the exact URL", c: false },
                             { t: "Ask OdooBot to redirect you", c: false },
                             { t: "Press Ctrl+K (or Cmd+K on Mac)", c: true },
                             { t: "Use arrows and enter keys to select the app", c: false }
                         ],
+
                         exp: "Ctrl+K (Cmd+K on Mac) opens the command palette, letting you search and jump anywhere in Odoo from the keyboard."
                     },
+
                     {
                         q: "Where do you change the language you see Odoo in?",
+
                         options: [
                             { t: "Preferences, under the Language field", c: true },
                             { t: "Discuss settings", c: false },
                             { t: "The Apps menue", c: false },
                             { t: "The Settings app", c: false }
                         ],
+
                         exp: "Preferences includes a Language field where you can search for and select any language installed in the database."
                     },
+
                     {
                         q: "In Preferences, what can you choose for how you receive notifications?",
+
                         options: [
                             { t: "SMS updates, or handle everything inside Odoo instead", c: false },
                             { t: "Notifications can't be configured", c: false },
                             { t: "Email updates, or handle everything inside Odoo instead", c: true },
                             { t: "SMS, or email updates", c: false }
                         ],
+
                         exp: "You can choose to get notifications by email or handle them entirely inside Odoo, whichever fits how you work."
                     },
+
                     {
                         q: "What does turning on Two-Factor Authentication (2FA) do?",
+
                         options: [
                             { t: "Adds a second verification step when logging in", c: true },
                             { t: "Automatically saves every record you open", c: false },
                             { t: "Lets two people share one account", c: false },
                             { t: "Changes the interface to dark mode", c: false }
                         ],
+
                         exp: "2FA adds an extra login verification step, which is recommended for anyone working with sensitive data like donor or family records."
                     },
+
                     {
                         q: "How do you permanently remove a record you no longer need?",
+
                         options: [
                             { t: "Open the record and press the delete (or del) key", c: false },
                             { t: "Open the Actions menu and select Delete", c: true },
                             { t: "Click Discard", c: false },
                             { t: "Open the Actions menu and select Archive", c: false }
                         ],
+
                         exp: "Deleting a record is done from the Actions menu — and should be done carefully, since it can affect linked records like orders."
                     },
+
                     {
                         q: "What is the breadcrumb trail at the top-left of a page used for?",
+
                         options: [
                             { t: "Logging out", c: false },
                             { t: "Oppening current app settings menu", c: false },
                             { t: "Letting you click back through the path you took to get here", c: true },
                             { t: "Just going back to the Apps menu", c: false }
                         ],
+
                         exp: "The breadcrumb remembers your path — clicking an earlier step takes you right back to that screen, exactly where you left off."
                     },
+
                     {
                         q: "In a list view, how do you sort records by a specific column?",
+
                         options: [
                             { t: "Group By that field", c: false },
                             { t: "Click the column header", c: true },
                             { t: "Use the command palette", c: false },
                             { t: "Open the symbol next to the headers and click the checkbox next to the column name", c: false }
                         ],
+
                         exp: "Clicking a column header sorts by column — click once for ascending, click again to reverse to descending."
                     },
+
                     {
                         q: "What's the difference between using a Filter and using Group By in a list view?",
+
                         options: [
                             { t: "Group By deletes records; Filters only hide them", c: false },
                             { t: "Filters only work on dates; Group By works on any field", c: false },
                             { t: "A filter narrows down which records show; Group By reorganizes all records into sections", c: true },
                             { t: "There is no difference", c: false }
                         ],
+
                         exp: "Filtering reduces the record set to match a condition, while Group By keeps every record but organizes them into collapsible sections."
                     },
+
                     {
                         q: "None of the ready-made filters fit what you need. What should you use instead?",
+
                         options: [
                             { t: "Delete the default filter", c: false },
                             { t: "Use a Favorite filter", c: false },
                             { t: "Add Custom Filter", c: true },
                             { t: "Create a Custom Group", c: false }
                         ],
+
                         exp: "Add Custom Filter lets you pick a field, a comparison, and a value to build exactly the condition you need."
                     },
+
                     {
                         q: "You've built a filter and grouping combination you'll want to reuse in the future. What should you do?",
+
                         options: [
                             { t: "Remember it and rebuild it manually every time", c: false },
                             { t: "Take a screenshot of the list", c: false },
                             { t: "Open the search dropdown and click Save current search", c: true },
                             { t: "Open the Actions menu and click Save current search", c: false }
                         ],
+
                         exp: "Save current search stores your filter and grouping combo as a Favorite, so you can reapply it in one click instead of rebuilding it."
                     },
+
                     {
                         q: "Once a search is saved, where do you find it again and how do you remove it if you no longer need it?",
+
                         options: [
                             { t: "Reload the app, it is now the default search; click the 'x' button to delete it", c: false },
                             { t: "Under Favorites in the search dropdown; Delete it from the edit favorite option", c: true },
                             { t: "It can never be removed once saved", c: false },
                             { t: "Under Favorites in the search dropdown; Archive it from the edit favorite option", c: false }
                         ],
+
                         exp: "Saved searches live under Favorites in the search dropdown, alongside any others already saved — you can edit or delete one from there."
                     }
+
                 ]
             },
-            { id: 'mod2', title: "2. Understanding Contacts", videoUrl: "", questions: [] },
+
+            {
+                id: 'mod2',
+                title: "2. Understanding Contacts",
+                videoUrl: "",
+                questions: []
+            },
+
             {
                 id: 'mod3',
+
                 title: "3. Filters vs. Reports & Views",
-                videoUrl: "https://drive.google.com/file/d/1rviBtQF_k1xI2ZsHCPtOiwzSgBdQAcPW/preview",
+
+                videoUrl:
+                    "https://drive.google.com/file/d/1rviBtQF_k1xI2ZsHCPtOiwzSgBdQAcPW/preview",
+
                 questions: [
+
                     {
                         q: "What is the primary function of a view in Odoo, such as switching from List to Kanban?",
+
                         options: [
                             { t: "It updates the underlying database values associated with the displayed records.", c: false },
                             { t: "It filters out records that do not meet specific layout conditions.", c: false },
                             { t: "It hides non-numeric columns from being viewed by other users.", c: false },
                             { t: "It changes how the same set of records is displayed without adding or removing data.", c: true }
                         ],
+
                         exp: "Changing views alters the layout and presentation format of the records while preserving the exact same record set and count."
                     },
+
                     {
                         q: "How do filters interact with views in Odoo?",
+
                         options: [
                             { t: "Filters remain active and can be combined independently with any view.", c: true },
                             { t: "Applying a filter automatically resets the current view back to List view.", c: false },
                             { t: "Filters replace the need to select optional columns in the interface.", c: false },
                             { t: "Filters can only be applied when working within Reporting views.", c: false }
                         ],
+
                         exp: "Filters operate independently of display layouts, allowing any active filter to persist when switching between different views."
                     },
+
                     {
                         q: "What defines a 'report' in Odoo compared to a standard List or Kanban view?",
+
                         options: [
                             { t: "It is a specialized view designed for data analysis rather than reading individual records one by one.", c: true },
                             { t: "It is a static document that cannot be filtered or manipulated by the user.", c: false },
                             { t: "It is an external spreadsheet generated outside of the Odoo framework.", c: false },
                             { t: "It is a permission level that restricts record modification for standard users.", c: false }
                         ],
+
                         exp: "Reports group and aggregate data into analytical structures like charts and pivot tables rather than showing record-by-record lists."
                     },
+
                     {
                         q: "Which type of fields can be calculated under the 'Measures' menu in Pivot view?",
+
                         options: [
                             { t: "Only date and timestamp fields", c: false },
                             { t: "Only numeric fields", c: true },
                             { t: "Any field selected as an optional column", c: false },
                             { t: "Only text and string fields", c: false }
                         ],
+
                         exp: "Pivot calculations rely on mathemathical aggregation, which requires numeric values like quantities or amounts."
                     },
+
                     {
                         q: "How can a user create a nested breakdown in Pivot view?",
+
                         options: [
                             { t: "By clicking the plus icon to add a group, and then adding another group inside it.", c: true },
                             { t: "By enabling all optional columns in the header settings.", c: false },
                             { t: "By selecting multiple saved favorites at the same time.", c: false },
                             { t: "By switching repeatedly between Graph view and List view.", c: false }
                         ],
+
                         exp: "Nested breakdowns are formed by sequentially adding groups within existing group levels using the plus icon."
                     },
+
                     {
                         q: "Which format can Pivot views be directly exported to using the built-in download button?",
+
                         options: [
                             { t: "Excel file", c: true },
                             { t: "PNG image", c: false },
                             { t: "PDF Document", c: false },
                             { t: "CSV file", c: false }
                         ],
+
                         exp: "The dowload option in Pivot view allows users to export aggregated table data directly into an Excel spreadsheet."
                     },
+
                     {
                         q: "Which three chart types are available in Graph view for analyzing data?",
+
                         options: [
                             { t: "Scatter plots, bubble charts, and radar charts", c: false },
                             { t: "Gantt charts, waterfall charts, and area charts", c: false },
                             { t: "Funnel charts, heat maps, and tree maps", c: false },
                             { t: "Bar charts, line charts, and pie charts", c: true }
                         ],
+
                         exp: "Graph view provides bar charts for proportional distributions."
                     },
+
                     {
                         q: "Where can a user locate the controls to show or hide optional columns in List view?",
+
                         options: [
                             { t: "Inside the main Reporting dropdown menu", c: false },
                             { t: "In the view switcher located at the bottom of the screen", c: false },
                             { t: "At the end of the column headers", c: true },
                             { t: "Under the Measures dropdown in Pivot view", c: false }
                         ],
+
                         exp: "A small icon positioned at the far end of table column headers opens the toggle menu for optional columns."
                     },
+
                     {
                         q: "What happens to your customized column choices when you apply a saved favorite filter?",
+
                         options: [
                             { t: "The visible columns remain exactly as you set them.", c: true },
                             { t: "The view automatically switches from List to Pivot view.", c: false },
                             { t: "All optional columns are automatically hidden.", c: false },
                             { t: "The visible columns reset to the default configuration of the saved favorite.", c: false }
                         ],
+
                         exp: "Column selection are personal screen settings that are independent of filters and groupings."
                     },
+
                     {
                         q: "How can a user access Graph or Pivot views without entering the Reporting menu?",
+
                         options: [
                             { t: "By enabling optional numeric columns in the header settings.", c: false },
                             { t: "By exporting the list view directly into an Excel document.", c: false },
                             { t: "By selecting the Pivot or Graph icons in the top-right view switcher of the app.", c: true },
                             { t: "By applying a saved favorite search criteria.", c: false }
                         ],
+
                         exp: "The view switcher in the upper-right corner allows users to switch Pivot or Graph views directly from standard app screens (if available for that app)."
                     }
+
                 ]
             },
+
             {
                 id: 'mod4',
+
                 title: "4. Book Request Lifecycle & Workflow",
-                videoUrl: "https://drive.google.com/file/d/1FXjWvK9I_Xwtuhh0HuD9h37rCXjCCKyh/preview",
+
+                videoUrl:
+                    "https://drive.google.com/file/d/1FXjWvK9I_Xwtuhh0HuD9h37rCXjCCKyh/preview",
+
                 questions: [
+
                     {
                         q: "Which sequence describes the path every book request follows at Read to Grow?",
+
                         options: [
                             { t: "Create the request, confirm it, Odoo creates the delivery, and the request is marked Complete once the delivery is validated.", c: true },
                             { t: "Create the delivery, confirm it, and then create the request from the delivery record.", c: false },
                             { t: "Create the request, validate the delivery manually, and then mark the request Complete by hand.", c: false },
                             { t: "Create the request, mark it Complete, and then create the delivery for the books.", c: false }
                         ],
+
                         exp: "Every request is created, confirmed, and then Odoo generates the delivery. When the books go out, the request completes."
                     },
+
                     {
                         q: "Which field identifies the individual person placing the request?",
+
                         options: [
                             { t: "Receiving Household or Organization", c: false },
                             { t: "Adult making the order", c: true },
                             { t: "Child making the order", c: false },
                             { t: "Adult processing the order", c: false }
                         ],
+
                         exp: "'Adult making the order' is the person placing the request, while 'Receiving Household or Organization' is the family or group that will actually receive the books."
                     },
+
                     {
                         q: "Which of the following are required field on a new book request?",
+
                         options: [
                             { t: "Adult making the order and Receiving Household / Organization", c: false },
                             { t: "Program, Initiative", c: false },
                             { t: "Delivery / Pick Up Date and Purpose", c: false },
                             { t: "All the fields mentioned in the other options are requiered", c: true }
                         ],
+
                         exp: "Program, Initiative, Purpose, Delivery / Pick Up Date, Adult Making the Order and Receiving Household / Organization are required. Fields like Delivery Type, Number of Books Requested, and Language are additional."
                     },
+
                     {
                         q: "What does the 'Total Ordered' number count on a book request?",
+
                         options: [
                             { t: "Every line on the order", c: false },
                             { t: "Only the items that are available for delivery", c: false },
                             { t: "The number of order lines, regardless of quantity", c: false },
                             { t: "Only the items categorized as books", c: true }
                         ],
+
                         exp: "Items categorized as something else can be on the order, but they are not counted in Total Ordered."
                     },
+
                     {
                         q: "What happens when you click Confirm on a book request?",
+
                         options: [
                             { t: "The request is marked Complete and the books are removed from inventory.", c: false },
                             { t: "Odoo saves the request and creates the delivery automatically, and the status becomes In Process.", c: true },
                             { t: "The request is sent to the household for approval before anything is created.", c: false },
                             { t: "Odoo saves the request, but you must create the delivery manually.", c: false }
                         ],
+
                         exp: "Confirming saves the request and automatically creates the delivery. 'In Process' means the request was received but the books haven't gone out yet."
                     },
+
                     {
                         q: "You entered the wrong language edition of a book. What is the recommended way to fix it?",
+
                         options: [
                             { t: "Before confirming, edit the line and save; after confirming, you may need to cancel the request and create it again.", c: true },
                             { t: "Always delete the delivery and create a new one from the Contacts app.", c: false },
                             { t: "Validate the delivery first, then edit the line on the request.", c: false },
                             { t: "Mark the request Complete and start a new one with the correct edition.", c: false }
                         ],
+
                         exp: "Before confirmation you can simply edit the line and save. After confirmation, changes may be restricted, so you may need to cancel and recreate the request."
                     },
+
                     {
                         q: "What does clicking Validate on the delivery tell Odoo?",
+
                         options: [
                             { t: "That the request has been approved and can be confirmed.", c: false },
                             { t: "That the request should be declined because a book is out of stock.", c: false },
                             { t: "That the books have left the warehouse, so they are taken out of the inventory count.", c: true },
                             { t: "That the household has paid for the books.", c: false }
                         ],
+
                         exp: "Validating the delivery records that the books left the warehouse and removes them from inventory. If some items are unavailable, Odoo offers to create a backorder."
                     },
+
                     {
                         q: "How can you see every book request for a specific family or organization?",
+
                         options: [
                             { t: "Sort the Book Requests list by the Household column.", c: false },
                             { t: "Open the Delivery record and check its history.", c: false },
                             { t: "From the Inventory, open a product record and search for the family or organization.", c: false },
                             { t: "Open the contact record and click the Book Requests button.", c: true }
                         ],
+
                         exp: "From a contact record, the Book Requests button shows every request associated with that family or organization."
                     },
+
                     {
                         q: "After the books are delivered, how does a request change from In Process to Complete?",
+
                         options: [
                             { t: "You must click Mark Complete on the request.", c: false },
                             { t: "It changes by itself once the delivery is validated.", c: true },
                             { t: "You must click Reopen and then Confirm again.", c: false },
                             { t: "It changes when the household confirms receipt in Contacts.", c: false }
                         ],
+
                         exp: "The status updates automatically after the delivery is completed, so there is no need to mark it Complete by hand."
                     }
+
                 ]
             },
-            { id: 'mod5', title: "5. Entering BFK data & daily order entry", videoUrl: "", questions: [] },
-            { id: 'mod6', title: "6. Looking up customer orders", videoUrl: "", questions: [] },
-            { id: 'mod7', title: "7. Entering donated books", videoUrl: "", questions: [] },
-            { id: 'mod8', title: "8. First Year / BFB data entry", videoUrl: "", questions: [] },
-            { id: 'mod9', title: "9. Updating a household address", videoUrl: "", questions: [] },
-            { id: 'mod10', title: "10. Running the First Year import wizard", videoUrl: "", questions: [] },
-            { id: 'mod11', title: "11. Creating mailing-list reports", videoUrl: "", questions: [] },
-            { id: 'mod12', title: "12. Reading the RTG Reports dashboard", videoUrl: "", questions: [] },
-            { id: 'mod13', title: "13. Building a simple custom report", videoUrl: "", questions: [] },
-            { id: 'mod14', title: "14. Odoo's multi-step workflows", videoUrl: "", questions: [] },
-            { id: 'mod15', title: "15. Purchase orders & inventory updates", videoUrl: "", questions: [] },
-            { id: 'mod16', title: "16. Adding new books to the catalog", videoUrl: "", questions: [] },
-            { id: 'mod17', title: "17. Adjusting inventory & transfers", videoUrl: "", questions: [] },
-            { id: 'mod18', title: "18. Creating new pivot tables", videoUrl: "", questions: [] }
+
+            {
+                id: 'mod5',
+                title: "5. Entering BFK data & daily order entry",
+                videoUrl: "",
+                questions: []
+            },
+
+            {
+                id: 'mod6',
+                title: "6. Looking up customer orders",
+                videoUrl: "",
+                questions: []
+            },
+
+            {
+                id: 'mod7',
+                title: "7. Entering donated books",
+                videoUrl: "",
+                questions: []
+            },
+
+            {
+                id: 'mod8',
+                title: "8. First Year / BFB data entry",
+                videoUrl: "",
+                questions: []
+            },
+
+            {
+                id: 'mod9',
+                title: "9. Updating a household address",
+                videoUrl: "",
+                questions: []
+            },
+
+            {
+                id: 'mod10',
+                title: "10. Running the First Year import wizard",
+                videoUrl: "",
+                questions: []
+            },
+
+            {
+                id: 'mod11',
+                title: "11. Creating mailing-list reports",
+                videoUrl: "",
+                questions: []
+            },
+
+            {
+                id: 'mod12',
+                title: "12. Reading the RTG Reports dashboard",
+                videoUrl: "",
+                questions: []
+            },
+
+            {
+                id: 'mod13',
+                title: "13. Building a simple custom report",
+                videoUrl: "",
+                questions: []
+            },
+
+            {
+                id: 'mod14',
+                title: "14. Odoo's multi-step workflows",
+                videoUrl: "",
+                questions: []
+            },
+
+            {
+                id: 'mod15',
+                title: "15. Purchase orders & inventory updates",
+                videoUrl: "",
+                questions: []
+            },
+
+            {
+                id: 'mod16',
+                title: "16. Adding new books to the catalog",
+                videoUrl: "",
+                questions: []
+            },
+
+            {
+                id: 'mod17',
+                title: "17. Adjusting inventory & transfers",
+                videoUrl: "",
+                questions: []
+            },
+
+            {
+                id: 'mod18',
+                title: "18. Creating new pivot tables",
+                videoUrl: "",
+                questions: []
+            }
+
         ];
+
 
         // --- STATE & LOCAL STORAGE ---
         let state = {
-            user: { name: "", date: "" },
+
+            user: {
+                name: "",
+                date: ""
+            },
+
             currentModule: null,
+
             qIndex: 0,
+
             score: 0,
+
             selectedOpt: null
+
         };
 
+
         function getUserProgressKey() {
-            return 'odoo_training_' + state.user.name.trim().toLowerCase().replace(/\s+/g, '_');
+
+            return (
+                'odoo_training_' +
+                state.user.name
+                    .trim()
+                    .toLowerCase()
+                    .replace(/\s+/g, '_')
+            );
+
         }
+
 
         function loadUserProgress() {
+
             try {
-                const data = localStorage.getItem(getUserProgressKey());
-                return data ? JSON.parse(data) : {};
-            } catch(e) {
+
+                const data =
+                    localStorage.getItem(
+                        getUserProgressKey()
+                    );
+
+                return data
+                    ? JSON.parse(data)
+                    : {};
+
+            } catch (e) {
+
                 return {};
+
             }
+
         }
+
 
         function saveModuleProgress(modId, scorePercent) {
-            if(!state.user.name) return;
-            const progress = loadUserProgress();
-            if(!progress[modId] || scorePercent > progress[modId]) {
-                progress[modId] = scorePercent;
-                localStorage.setItem(getUserProgressKey(), JSON.stringify(progress));
+
+            if (!state.user.name) return;
+
+            const progress =
+                loadUserProgress();
+
+            if (
+                !progress[modId] ||
+                scorePercent > progress[modId]
+            ) {
+
+                progress[modId] =
+                    scorePercent;
+
+                localStorage.setItem(
+                    getUserProgressKey(),
+                    JSON.stringify(progress)
+                );
+
             }
+
         }
+
 
         // --- DOM UTILS ---
-        const $ = id => document.getElementById(id);
-        const screens = ['login', 'dashboard', 'video', 'quiz', 'end'].reduce((acc, s) => ({...acc, [s]: $(`screen-${s}`)}), {});
+        const $ =
+            id =>
+                document.getElementById(id);
+
+
+        const screens =
+            ['login', 'dashboard', 'video', 'quiz', 'end']
+                .reduce(
+                    (acc, s) => ({
+                        ...acc,
+                        [s]: $(`screen-${s}`)
+                    }),
+                    {}
+                );
+
 
         function showScreen(name) {
-            Object.values(screens).forEach(s => s.classList.add('hide'));
-            screens[name].classList.remove('hide');
-            $('progress-bar-container').classList.toggle('hide', !['video', 'quiz'].includes(name));
-            if(name !== 'quiz') $('feedback-overlay').classList.add('hide');
+
+            Object.values(screens)
+                .forEach(
+                    s => s.classList.add('hide')
+                );
+
+            screens[name]
+                .classList
+                .remove('hide');
+
+            $('progress-bar-container')
+                .classList
+                .toggle(
+                    'hide',
+                    !['video', 'quiz']
+                        .includes(name)
+                );
+
+            if (name !== 'quiz') {
+
+                $('feedback-overlay')
+                    .classList
+                    .add('hide');
+
+            }
+
         }
+
 
         function setProgress(percent) {
-            $('progress-bar').style.width = `${percent}%`;
+
+            $('progress-bar').style.width =
+                `${percent}%`;
+
         }
 
+
         // --- INIT & LOGIN ---
-        $('input-date').valueAsDate = new Date();
+        $('input-date').valueAsDate =
+            new Date();
 
-        $('user-select').addEventListener('change', (e) => {
-            const val = e.target.value;
-            const otherContainer = $('other-name-container');
-            if(val === 'Other') {
-                otherContainer.classList.remove('hide');
-            } else {
-                otherContainer.classList.add('hide');
-                $('input-other-name').value = '';
-            }
-        });
 
-        $('btn-login').addEventListener('click', () => {
-            const selectedVal = $('user-select').value;
-            let name = "";
-            if(selectedVal === 'Other') {
-                name = $('input-other-name').value.trim();
-            } else {
-                name = selectedVal;
-            }
-            const date = $('input-date').value;
+        $('btn-login')
+            .addEventListener(
+                'click',
+                () => {
 
-            if(!selectedVal) return alert('Please select your name from the list or choose Other.');
-            if(selectedVal === 'Other' && !name) return alert('Please type your exact full name.');
-            if(!date) return alert('Please provide the training date.');
+                    const selectedVal =
+                        $('user-select').value;
 
-            state.user = { name, date };
-            $('header-user-info').classList.remove('hide');$('header-name').textContent = name;
-            renderDashboard();
-            showScreen('dashboard');
-        });
+                    const name =
+                        selectedVal;
 
-        $('btn-logout').addEventListener('click', () => {
-            state.user = { name: "", date: "" };
-            $('user-select').value = "";
-            $('input-other-name').value = "";
-            $('other-name-container').classList.add('hide');$('header-user-info').classList.add('hide');
-            showScreen('login');
-        });
+                    const date =
+                        $('input-date').value;
+
+
+                    if (!selectedVal) {
+
+                        return alert(
+                            'Please select your name from the list.'
+                        );
+
+                    }
+
+
+                    if (!date) {
+
+                        return alert(
+                            'Please provide the training date.'
+                        );
+
+                    }
+
+
+                    state.user = {
+                        name,
+                        date
+                    };
+
+
+                    $('header-user-info')
+                        .classList
+                        .remove('hide');
+
+                    $('header-name')
+                        .textContent =
+                        name;
+
+
+                    renderDashboard();
+
+                    showScreen(
+                        'dashboard'
+                    );
+
+                }
+            );
+
+
+        $('btn-logout')
+            .addEventListener(
+                'click',
+                () => {
+
+                    state.user = {
+                        name: "",
+                        date: ""
+                    };
+
+                    $('user-select').value =
+                        "";
+
+                    $('header-user-info')
+                        .classList
+                        .add('hide');
+
+                    showScreen(
+                        'login'
+                    );
+
+                }
+            );
+
 
         // --- DASHBOARD ---
         function renderDashboard() {
-            const list = $('module-list');
-            list.innerHTML = '';
-            const progress = loadUserProgress();
 
-            modules.forEach(mod => {
-                const isReady = mod.questions && mod.questions.length > 0;
-                const score = progress[mod.id];
-                const isCompleted = score !== undefined && score >= 60;
-                
-                const card = document.createElement('div');
-                card.className = `card p-5 flex flex-col justify-between ${isReady ? 'module-card cursor-pointer' : 'opacity-60 bg-slate-50'}`;
-                
-                let badgeHTML = `<span class="text-xs font-semibold px-2 py-1 rounded bg-slate-100 text-slate-600">${mod.questions.length} Questions</span>`;
-                if(isCompleted) {
-                    badgeHTML = `<span class="text-xs font-bold px-2 py-1 rounded bg-emerald-100 text-emerald-700 flex items-center gap-1">✓ Completed (${score}%)</span>`;
-                } else if(score !== undefined && score < 60) {
-                    badgeHTML = `<span class="text-xs font-bold px-2 py-1 rounded bg-amber-100 text-amber-700">Review Recommended (${score}%)</span>`;
+            const list =
+                $('module-list');
+
+            list.innerHTML =
+                '';
+
+
+            const progress =
+                loadUserProgress();
+
+
+            modules.forEach(
+                mod => {
+
+                    const isReady =
+                        mod.questions &&
+                        mod.questions.length > 0;
+
+
+                    const score =
+                        progress[mod.id];
+
+
+                    const isCompleted =
+                        score !== undefined &&
+                        score >= 60;
+
+
+                    const card =
+                        document.createElement(
+                            'div'
+                        );
+
+
+                    card.className =
+                        `card p-5 flex flex-col justify-between ${
+                            isReady
+                                ? 'module-card cursor-pointer'
+                                : 'opacity-60 bg-slate-50'
+                        }`;
+
+
+                    let badgeHTML =
+                        `<span class="text-xs font-semibold px-2 py-1 rounded bg-slate-100 text-slate-600">${mod.questions.length} Questions</span>`;
+
+
+                    if (isCompleted) {
+
+                        badgeHTML =
+                            `<span class="text-xs font-bold px-2 py-1 rounded bg-emerald-100 text-emerald-700 flex items-center gap-1">✓ Completed (${score}%)</span>`;
+
+                    } else if (
+                        score !== undefined &&
+                        score < 60
+                    ) {
+
+                        badgeHTML =
+                            `<span class="text-xs font-bold px-2 py-1 rounded bg-amber-100 text-amber-700">Review Recommended (${score}%)</span>`;
+
+                    }
+
+
+                    card.innerHTML =
+                        `
+                        <div class="mb-4">
+
+                            <h3 class="font-bold text-slate-800 leading-snug">
+                                ${mod.title}
+                            </h3>
+
+                        </div>
+
+                        <div class="flex items-center justify-between mt-auto">
+
+                            ${badgeHTML}
+
+                            ${
+                                isReady
+                                    ? '<span class="text-indigo-600 font-bold text-sm">Start →</span>'
+                                    : ''
+                            }
+
+                        </div>
+                        `;
+
+
+                    if (isReady) {
+
+                        card.addEventListener(
+                            'click',
+                            () =>
+                                startModule(mod)
+                        );
+
+                    }
+
+
+                    list.appendChild(
+                        card
+                    );
+
                 }
+            );
 
-                card.innerHTML = `
-                    <div class="mb-4">
-                        <h3 class="font-bold text-slate-800 leading-snug">${mod.title}</h3>
-                    </div>
-                    <div class="flex items-center justify-between mt-auto">
-                        ${badgeHTML}
-                        ${isReady ? '<span class="text-indigo-600 font-bold text-sm">Start →</span>' : ''}
-                    </div>
-                `;
-                if(isReady) card.addEventListener('click', () => startModule(mod));
-                list.appendChild(card);
-            });
         }
+
 
         // --- VIDEO LOOP ---
-        document.querySelectorAll('.btn-back').forEach(b => b.addEventListener('click', () => showScreen('dashboard')));
+        document
+            .querySelectorAll(
+                '.btn-back'
+            )
+            .forEach(
+                b =>
+                    b.addEventListener(
+                        'click',
+                        () =>
+                            showScreen(
+                                'dashboard'
+                            )
+                    )
+            );
+
 
         function startModule(mod) {
-            state.currentModule = mod;
-            $('video-title').textContent = mod.title;
-            
-            const vWrap = $('video-wrapper');
-            vWrap.innerHTML = '';
-            if(mod.videoUrl) {
-                const iframe = document.createElement('iframe');
-                iframe.src = mod.videoUrl;
-                iframe.allow = "autoplay";
-                vWrap.appendChild(iframe);
+
+            state.currentModule =
+                mod;
+
+
+            $('video-title')
+                .textContent =
+                mod.title;
+
+
+            const vWrap =
+                $('video-wrapper');
+
+
+            vWrap.innerHTML =
+                '';
+
+
+            if (mod.videoUrl) {
+
+                const iframe =
+                    document.createElement(
+                        'iframe'
+                    );
+
+
+                iframe.src =
+                    mod.videoUrl;
+
+
+                iframe.allow =
+                    "autoplay";
+
+
+                vWrap.appendChild(
+                    iframe
+                );
+
             } else {
-                 vWrap.innerHTML = `<div class="absolute inset-0 flex items-center justify-center bg-slate-800 text-slate-400 font-medium">Video placeholder</div>`;
+
+                vWrap.innerHTML =
+                    `<div class="absolute inset-0 flex items-center justify-center bg-slate-800 text-slate-400 font-medium">Video placeholder</div>`;
+
             }
-            
+
+
             setProgress(0);
-            showScreen('video');
+
+            showScreen(
+                'video'
+            );
+
         }
 
-        $('btn-start-quiz').addEventListener('click', () => {
-            state.qIndex = 0;
-            state.score = 0;
-            showScreen('quiz');
-            renderQuestion();
-        });
+
+        $('btn-start-quiz')
+            .addEventListener(
+                'click',
+                () => {
+
+                    state.qIndex =
+                        0;
+
+                    state.score =
+                        0;
+
+
+                    showScreen(
+                        'quiz'
+                    );
+
+
+                    renderQuestion();
+
+                }
+            );
+
 
         // --- QUIZ LOGIC ---
-        const shuffle = arr => arr.sort(() => Math.random() - 0.5);
+        const shuffle =
+            arr =>
+                arr.sort(
+                    () =>
+                        Math.random() -
+                        0.5
+                );
+
 
         function renderQuestion() {
-            const mod = state.currentModule;
-            const qData = mod.questions[state.qIndex];
-            state.selectedOpt = null;
-            
-            setProgress(((state.qIndex) / mod.questions.length) * 100);
-            $('quiz-counter').textContent = `Question ${state.qIndex + 1} of ${mod.questions.length}`;
-            $('question-text').textContent = qData.q;
-            
-            const btnCheck = $('btn-check');
-            btnCheck.disabled = true;
-            btnCheck.className = "btn w-full bg-slate-200 text-slate-400 font-semibold py-3 rounded-lg cursor-not-allowed transition-colors";
-            btnCheck.textContent = "Check Answer";
-            
-            $('feedback-overlay').classList.add('hide');
-            
-            const container = $('options-container');
-            container.innerHTML = '';
-            
-            shuffle([...qData.options]).forEach((opt) => {
-                const div = document.createElement('div');
-                div.className = "option-card flex items-start gap-4";
-                div.innerHTML = `
-                    <div class="w-5 h-5 rounded-full border-2 border-slate-300 mt-0.5 flex-shrink-0 flex items-center justify-center radio-circle transition-colors">
-                        <div class="w-2.5 h-2.5 bg-indigo-600 rounded-full opacity-0 inner-dot transition-opacity"></div>
-                    </div>
-                    <span class="text-slate-700 leading-tight font-medium">${opt.t}</span>
-                `;
-                
-                div.addEventListener('click', () => {
-                    if($('feedback-overlay').classList.contains('hide') === false) return;
-                    
-                    container.querySelectorAll('.option-card').forEach(c => {
-                        c.classList.remove('selected');
-                        c.querySelector('.radio-circle').classList.remove('border-indigo-600');
-                        c.querySelector('.inner-dot').classList.remove('opacity-100');
-                        c.querySelector('.inner-dot').classList.add('opacity-0');
-                    });
-                    
-                    div.classList.add('selected');
-                    div.querySelector('.radio-circle').classList.add('border-indigo-600');
-                    div.querySelector('.inner-dot').classList.remove('opacity-0');
-                    div.querySelector('.inner-dot').classList.add('opacity-100');
-                    
-                    state.selectedOpt = opt;
-                    btnCheck.disabled = false;
-                    btnCheck.className = "btn w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700 shadow-md";
-                });
-                container.appendChild(div);
-            });
+
+            const mod =
+                state.currentModule;
+
+
+            const qData =
+                mod.questions[
+                    state.qIndex
+                ];
+
+
+            state.selectedOpt =
+                null;
+
+
+            setProgress(
+                (
+                    state.qIndex /
+                    mod.questions.length
+                ) *
+                100
+            );
+
+
+            $('quiz-counter')
+                .textContent =
+                `Question ${state.qIndex + 1} of ${mod.questions.length}`;
+
+
+            $('question-text')
+                .textContent =
+                qData.q;
+
+
+            const btnCheck =
+                $('btn-check');
+
+
+            btnCheck.disabled =
+                true;
+
+
+            btnCheck.className =
+                "btn w-full bg-slate-200 text-slate-400 font-semibold py-3 rounded-lg cursor-not-allowed transition-colors";
+
+
+            btnCheck.textContent =
+                "Check Answer";
+
+
+            $('feedback-overlay')
+                .classList
+                .add('hide');
+
+
+            const container =
+                $('options-container');
+
+
+            container.innerHTML =
+                '';
+
+
+            shuffle(
+                [...qData.options]
+            )
+            .forEach(
+                opt => {
+
+                    const div =
+                        document.createElement(
+                            'div'
+                        );
+
+
+                    div.className =
+                        "option-card flex items-start gap-4";
+
+
+                    div.innerHTML =
+                        `
+                        <div class="w-5 h-5 rounded-full border-2 border-slate-300 mt-0.5 flex-shrink-0 flex items-center justify-center radio-circle transition-colors">
+
+                            <div class="w-2.5 h-2.5 bg-indigo-600 rounded-full opacity-0 inner-dot transition-opacity"></div>
+
+                        </div>
+
+                        <span class="text-slate-700 leading-tight font-medium">
+                            ${opt.t}
+                        </span>
+                        `;
+
+
+                    div.addEventListener(
+                        'click',
+                        () => {
+
+                            if (
+                                $('feedback-overlay')
+                                    .classList
+                                    .contains('hide') ===
+                                false
+                            ) {
+
+                                return;
+
+                            }
+
+
+                            container
+                                .querySelectorAll(
+                                    '.option-card'
+                                )
+                                .forEach(
+                                    c => {
+
+                                        c.classList
+                                            .remove(
+                                                'selected'
+                                            );
+
+
+                                        c.querySelector(
+                                            '.radio-circle'
+                                        )
+                                        .classList
+                                        .remove(
+                                            'border-indigo-600'
+                                        );
+
+
+                                        c.querySelector(
+                                            '.inner-dot'
+                                        )
+                                        .classList
+                                        .remove(
+                                            'opacity-100'
+                                        );
+
+
+                                        c.querySelector(
+                                            '.inner-dot'
+                                        )
+                                        .classList
+                                        .add(
+                                            'opacity-0'
+                                        );
+
+                                    }
+                                );
+
+
+                            div.classList
+                                .add(
+                                    'selected'
+                                );
+
+
+                            div.querySelector(
+                                '.radio-circle'
+                            )
+                            .classList
+                            .add(
+                                'border-indigo-600'
+                            );
+
+
+                            div.querySelector(
+                                '.inner-dot'
+                            )
+                            .classList
+                            .remove(
+                                'opacity-0'
+                            );
+
+
+                            div.querySelector(
+                                '.inner-dot'
+                            )
+                            .classList
+                            .add(
+                                'opacity-100'
+                            );
+
+
+                            state.selectedOpt =
+                                opt;
+
+
+                            btnCheck.disabled =
+                                false;
+
+
+                            btnCheck.className =
+                                "btn w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700 shadow-md";
+
+                        }
+                    );
+
+
+                    container.appendChild(
+                        div
+                    );
+
+                }
+            );
+
         }
 
-        $('btn-check').addEventListener('click', () => {
-            if(!state.selectedOpt) return;
-            const isCorrect = state.selectedOpt.c;
-            const qData = state.currentModule.questions[state.qIndex];
-            
-            if(isCorrect) state.score++;
-            
-            const overlay = $('feedback-overlay');
-            const icon = $('fb-icon');
-            const btnNext = $('btn-next');
-            
-            overlay.classList.remove('hide', 'border-t-emerald-500', 'border-t-rose-500');
-            
-            if(isCorrect) {
-                overlay.style.backgroundColor = '#ecfdf5';
-                overlay.style.borderTopColor = '#10b981';
-                icon.className = "w-8 h-8 rounded-full flex items-center justify-center font-bold text-white bg-emerald-500";
-                icon.innerHTML = "✓";
-                $('fb-title').textContent = "Excellent!";
-                $('fb-title').className = "text-xl font-bold text-emerald-800";
-                $('fb-text').innerHTML = qData.exp;
-                $('fb-text').className = "text-emerald-700 text-sm mt-1";
-                btnNext.className = "btn w-full sm:w-auto px-8 py-3 rounded-lg font-bold text-white shadow-md bg-emerald-600 hover:bg-emerald-700";
-            } else {
-                overlay.style.backgroundColor = '#fff1f2';
-                overlay.style.borderTopColor = '#f43f5e';
-                icon.className = "w-8 h-8 rounded-full flex items-center justify-center font-bold text-white bg-rose-500";
-                icon.innerHTML = "✕";
-                $('fb-title').textContent = "Not quite";
-                $('fb-title').className = "text-xl font-bold text-rose-800";
-                
-                const correctOpt = qData.options.find(o => o.c).t;
-                $('fb-text').innerHTML = `<strong class="text-rose-900 block mb-1">Correct Answer: ${correctOpt}</strong>${qData.exp}`;
-                $('fb-text').className = "text-rose-700 text-sm mt-1";
-                btnNext.className = "btn w-full sm:w-auto px-8 py-3 rounded-lg font-bold text-white shadow-md bg-rose-600 hover:bg-rose-700";
-            }
-        });
 
-        $('btn-next').addEventListener('click', () => {
-            state.qIndex++;
-            if(state.qIndex < state.currentModule.questions.length) {
-                renderQuestion();
-            } else {
-                showResults();
-            }
-        });
+        $('btn-check')
+            .addEventListener(
+                'click',
+                () => {
+
+                    if (
+                        !state.selectedOpt
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const isCorrect =
+                        state.selectedOpt.c;
+
+
+                    const qData =
+                        state.currentModule
+                            .questions[
+                                state.qIndex
+                            ];
+
+
+                    if (isCorrect) {
+
+                        state.score++;
+
+                    }
+
+
+                    const overlay =
+                        $('feedback-overlay');
+
+
+                    const icon =
+                        $('fb-icon');
+
+
+                    const btnNext =
+                        $('btn-next');
+
+
+                    overlay.classList
+                        .remove(
+                            'hide',
+                            'border-t-emerald-500',
+                            'border-t-rose-500'
+                        );
+
+
+                    if (isCorrect) {
+
+                        overlay.style.backgroundColor =
+                            '#ecfdf5';
+
+
+                        overlay.style.borderTopColor =
+                            '#10b981';
+
+
+                        icon.className =
+                            "w-8 h-8 rounded-full flex items-center justify-center font-bold text-white bg-emerald-500";
+
+
+                        icon.innerHTML =
+                            "✓";
+
+
+                        $('fb-title')
+                            .textContent =
+                            "Excellent!";
+
+
+                        $('fb-title')
+                            .className =
+                            "text-xl font-bold text-emerald-800";
+
+
+                        $('fb-text')
+                            .innerHTML =
+                            qData.exp;
+
+
+                        $('fb-text')
+                            .className =
+                            "text-emerald-700 text-sm mt-1";
+
+
+                        btnNext.className =
+                            "btn w-full sm:w-auto px-8 py-3 rounded-lg font-bold text-white shadow-md bg-emerald-600 hover:bg-emerald-700";
+
+                    } else {
+
+                        overlay.style.backgroundColor =
+                            '#fff1f2';
+
+
+                        overlay.style.borderTopColor =
+                            '#f43f5e';
+
+
+                        icon.className =
+                            "w-8 h-8 rounded-full flex items-center justify-center font-bold text-white bg-rose-500";
+
+
+                        icon.innerHTML =
+                            "✕";
+
+
+                        $('fb-title')
+                            .textContent =
+                            "Not quite";
+
+
+                        $('fb-title')
+                            .className =
+                            "text-xl font-bold text-rose-800";
+
+
+                        const correctOpt =
+                            qData.options
+                                .find(
+                                    o => o.c
+                                )
+                                .t;
+
+
+                        $('fb-text')
+                            .innerHTML =
+                            `<strong class="text-rose-900 block mb-1">Correct Answer: ${correctOpt}</strong>${qData.exp}`;
+
+
+                        $('fb-text')
+                            .className =
+                            "text-rose-700 text-sm mt-1";
+
+
+                        btnNext.className =
+                            "btn w-full sm:w-auto px-8 py-3 rounded-lg font-bold text-white shadow-md bg-rose-600 hover:bg-rose-700";
+
+                    }
+
+                }
+            );
+
+
+        $('btn-next')
+            .addEventListener(
+                'click',
+                () => {
+
+                    state.qIndex++;
+
+
+                    if (
+                        state.qIndex <
+                        state.currentModule
+                            .questions
+                            .length
+                    ) {
+
+                        renderQuestion();
+
+                    } else {
+
+                        showResults();
+
+                    }
+
+                }
+            );
+
 
         // --- RESULTS & WEBHOOK ---
         function showResults() {
-            setProgress(100);
-            showScreen('end');
-            
-            const total = state.currentModule.questions.length;
-            const percentage = Math.round((state.score / total) * 100);
-            const passed = percentage >= 60;
-            
-            saveModuleProgress(state.currentModule.id, percentage);
 
-            $('score-value').textContent = percentage;
-            $('score-raw').textContent = `${state.score} of ${total}`;
-            $('score-value').className = `text-4xl font-extrabold ${passed ? 'text-emerald-600' : 'text-amber-600'}`;
-            
-            const msgEl = $('result-message');
-            const titleEl = $('result-title');
-            const iconEl = $('result-icon');
-            const btnRetry = $('btn-retry');
-            
-            if(passed) {
-                titleEl.textContent = "Great job!";
-                titleEl.className = "text-3xl font-bold text-emerald-800 mb-2";
-                msgEl.innerHTML = `You have successfully completed <strong>${state.currentModule.title}</strong> and your progress has been saved.`;
-                iconEl.innerHTML = `<div class="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto text-emerald-600"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>`;
-                btnRetry.classList.remove('hide');
-                btnRetry.textContent = "Retake Module";
+            setProgress(100);
+
+            showScreen(
+                'end'
+            );
+
+
+            const total =
+                state.currentModule
+                    .questions
+                    .length;
+
+
+            const percentage =
+                Math.round(
+                    (
+                        state.score /
+                        total
+                    ) *
+                    100
+                );
+
+
+            const passed =
+                percentage >=
+                60;
+
+
+            saveModuleProgress(
+                state.currentModule.id,
+                percentage
+            );
+
+
+            $('score-value')
+                .textContent =
+                percentage;
+
+
+            $('score-raw')
+                .textContent =
+                `${state.score} of ${total}`;
+
+
+            $('score-value')
+                .className =
+                `text-4xl font-extrabold ${
+                    passed
+                        ? 'text-emerald-600'
+                        : 'text-amber-600'
+                }`;
+
+
+            const msgEl =
+                $('result-message');
+
+
+            const titleEl =
+                $('result-title');
+
+
+            const iconEl =
+                $('result-icon');
+
+
+            const btnRetry =
+                $('btn-retry');
+
+
+            if (passed) {
+
+                titleEl.textContent =
+                    "Great job!";
+
+
+                titleEl.className =
+                    "text-3xl font-bold text-emerald-800 mb-2";
+
+
+                msgEl.innerHTML =
+                    `You have successfully completed <strong>${state.currentModule.title}</strong> and your progress has been saved.`;
+
+
+                iconEl.innerHTML =
+                    `<div class="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto text-emerald-600"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>`;
+
+
+                btnRetry.classList
+                    .remove('hide');
+
+
+                btnRetry.textContent =
+                    "Retake Module";
+
             } else {
-                titleEl.textContent = "Almost there!";
-                titleEl.className = "text-3xl font-bold text-amber-800 mb-2";
-                msgEl.innerHTML = `It looks like some concepts were a bit tricky. We highly recommend reviewing the video and trying the quiz again.`;
-                iconEl.innerHTML = `<div class="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center mx-auto text-amber-600"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>`;
-                btnRetry.classList.remove('hide');
-                btnRetry.textContent = "Review Video & Retake";
+
+                titleEl.textContent =
+                    "Almost there!";
+
+
+                titleEl.className =
+                    "text-3xl font-bold text-amber-800 mb-2";
+
+
+                msgEl.innerHTML =
+                    `It looks like some concepts were a bit tricky. We highly recommend reviewing the video and trying the quiz again.`;
+
+
+                iconEl.innerHTML =
+                    `<div class="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center mx-auto text-amber-600"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>`;
+
+
+                btnRetry.classList
+                    .remove('hide');
+
+
+                btnRetry.textContent =
+                    "Review Video & Retake";
+
             }
 
-            sendWebhook(percentage);
+
+            sendWebhook(
+                percentage
+            );
+
         }
 
-        $('btn-retry').addEventListener('click', () => {
-            state.qIndex = 0;
-            state.score = 0;
-            showScreen('video');
-        });
 
-        $('btn-finish').addEventListener('click', () => {
-            renderDashboard();
-            showScreen('dashboard');
-        });
+        $('btn-retry')
+            .addEventListener(
+                'click',
+                () => {
 
-        function sendWebhook(percentage) {
-            const syncEl = $('sync-status');
-            syncEl.innerHTML = `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Saving progress...`;
-            syncEl.className = "text-sm font-semibold text-indigo-600 mb-6 flex items-center justify-center";
+                    state.qIndex =
+                        0;
 
-            fetch(WEBHOOK_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    name: state.user.name, 
-                    date: state.user.date,
-                    module: state.currentModule.title,
-                    score: `${percentage}% (${state.score}/${state.currentModule.questions.length})` 
-                })
-            }).then(() => {
-                syncEl.innerHTML = `<svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Results saved to dashboard`;
-                syncEl.className = "text-sm font-semibold text-emerald-600 mb-6 flex items-center justify-center";
-            }).catch(() => {
-                syncEl.innerHTML = "Connection error. Could not save results.";
-                syncEl.className = "text-sm font-semibold text-rose-500 mb-6 flex items-center justify-center";
-            });
+                    state.score =
+                        0;
+
+
+                    showScreen(
+                        'video'
+                    );
+
+                }
+            );
+
+
+        $('btn-finish')
+            .addEventListener(
+                'click',
+                () => {
+
+                    renderDashboard();
+
+                    showScreen(
+                        'dashboard'
+                    );
+
+                }
+            );
+
+
+        function sendWebhook(
+            percentage
+        ) {
+
+            const syncEl =
+                $('sync-status');
+
+
+            syncEl.innerHTML =
+                `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Saving progress...`;
+
+
+            syncEl.className =
+                "text-sm font-semibold text-indigo-600 mb-6 flex items-center justify-center";
+
+
+            fetch(
+                WEBHOOK_URL,
+                {
+
+                    method:
+                        'POST',
+
+                    mode:
+                        'no-cors',
+
+                    headers: {
+                        'Content-Type':
+                            'application/json'
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            name:
+                                state.user.name,
+
+                            date:
+                                state.user.date,
+
+                            module:
+                                state.currentModule.title,
+
+                            score:
+                                `${percentage}% (${state.score}/${state.currentModule.questions.length})`
+
+                        })
+
+                }
+            )
+            .then(
+                () => {
+
+                    syncEl.innerHTML =
+                        `<svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Results saved to dashboard`;
+
+
+                    syncEl.className =
+                        "text-sm font-semibold text-emerald-600 mb-6 flex items-center justify-center";
+
+                }
+            )
+            .catch(
+                () => {
+
+                    syncEl.innerHTML =
+                        "Connection error. Could not save results.";
+
+
+                    syncEl.className =
+                        "text-sm font-semibold text-rose-500 mb-6 flex items-center justify-center";
+
+                }
+            );
+
         }
+
     </script>
+
 </body>
 </html>
