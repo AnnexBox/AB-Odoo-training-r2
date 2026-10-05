@@ -4,19 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odoo Training Portal</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet"
+    >
+
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: #1e293b; }
-        .hide { display: none !important; }
-        .btn { transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out; }
-        .btn:active { transform: scale(0.98); }
-        .card { background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); border: 1px solid #e2e8f0; }
-        .module-card { transition: all 0.2s; }
-        .module-card:hover { border-color: #6366f1; transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
-        .option-card { border: 2px solid #e2e8f0; border-radius: 8px; padding: 16px; cursor: pointer; transition: all 0.2s; }
-        .option-card:hover { border-color: #cbd5e1; background-color: #f8fafc; }
-        .option-card.selected { border-color: #6366f1; background-color: #eef2ff; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .hide {
+            display: none !important;
+        }
+
+        .btn {
+            transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow:
+                0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e2e8f0;
+        }
+
+        .module-card {
+            transition: all 0.2s;
+        }
+
+        .module-card:hover {
+            border-color: #6366f1;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .option-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-card:hover {
+            border-color: #cbd5e1;
+            background-color: #f8fafc;
+        }
+
+        .option-card.selected {
+            border-color: #6366f1;
+            background-color: #eef2ff;
+        }
 
         .video-container {
             position: relative;
@@ -41,126 +91,278 @@
 
 <body class="min-h-screen flex items-center justify-center p-4">
 
-    <div id="app" class="w-full max-w-3xl min-h-[600px] flex flex-col bg-slate-50 rounded-2xl shadow-2xl overflow-hidden relative border border-slate-200">
+    <div
+        id="app"
+        class="w-full max-w-3xl min-h-[600px] flex flex-col bg-slate-50 rounded-2xl shadow-2xl overflow-hidden relative border border-slate-200"
+    >
 
         <!-- HEADER -->
-        <header class="bg-white px-6 py-4 border-b border-slate-200 flex items-center justify-between z-10 sticky top-0">
-            <div class="flex items-center gap-3">
-                <img src="logo+text 4.png" alt="Company Logo" class="h-8 object-contain" onerror="this.style.display='none'">
-                <span class="font-bold text-slate-700 text-lg border-l-2 border-slate-200 pl-3">Training</span>
+        <header
+            class="bg-white px-4 sm:px-6 py-4 border-b border-slate-200 flex items-center justify-between gap-3 z-10 sticky top-0"
+        >
+            <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+
+                <img
+                    src="logo+text 4.png"
+                    alt="Company Logo"
+                    class="h-6 sm:h-8 max-w-[115px] sm:max-w-none w-auto object-contain flex-shrink-0"
+                    onerror="this.style.display='none'"
+                >
+
+                <span
+                    class="font-bold text-slate-700 text-base sm:text-lg border-l-2 border-slate-200 pl-2 sm:pl-3 whitespace-nowrap"
+                >
+                    Training
+                </span>
+
             </div>
 
-            <div id="header-user-info" class="hide text-sm font-semibold text-slate-500 flex items-center gap-3">
-                <span id="header-name" class="text-indigo-600"></span>
+            <div
+                id="header-user-info"
+                class="hide flex items-center gap-2 sm:gap-3 flex-shrink-0"
+            >
 
-                <button id="btn-logout" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-600 px-2.5 py-1 rounded transition-colors">
-                    Switch User
+                <span
+                    id="header-name"
+                    class="text-indigo-600 text-[11px] sm:text-sm font-semibold text-right leading-tight max-w-[80px] sm:max-w-none"
+                ></span>
+
+                <button
+                    id="btn-logout"
+                    class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-600 px-2.5 py-2 sm:py-1.5 rounded transition-colors whitespace-nowrap"
+                >
+                    Switch<br class="sm:hidden"> User
                 </button>
+
             </div>
         </header>
 
         <!-- PROGRESS BAR -->
-        <div id="progress-bar-container" class="w-full bg-slate-200 h-1.5 hide">
-            <div id="progress-bar" class="bg-indigo-600 h-1.5 w-0 transition-all duration-300 ease-out"></div>
+        <div
+            id="progress-bar-container"
+            class="w-full bg-slate-200 h-1.5 hide"
+        >
+            <div
+                id="progress-bar"
+                class="bg-indigo-600 h-1.5 w-0 transition-all duration-300 ease-out"
+            ></div>
         </div>
 
-        <main class="flex-1 overflow-y-auto p-6 flex flex-col relative bg-slate-50/50">
+        <main
+            class="flex-1 overflow-y-auto p-6 flex flex-col relative bg-slate-50/50"
+        >
 
             <!-- SCREEN 1: LOGIN -->
-            <div id="screen-login" class="flex-1 flex flex-col items-center justify-center max-w-md mx-auto w-full text-center space-y-6">
+            <div
+                id="screen-login"
+                class="flex-1 flex flex-col items-center justify-center max-w-md mx-auto w-full text-center space-y-6"
+            >
 
                 <div>
-                    <h1 class="text-3xl font-bold text-slate-800 mb-2">Welcome</h1>
-                    <p class="text-slate-500">Select your name to access your training dashboard.</p>
+                    <h1 class="text-3xl font-bold text-slate-800 mb-2">
+                        Welcome
+                    </h1>
+
+                    <p class="text-slate-500">
+                        Select your name to access your training dashboard.
+                    </p>
                 </div>
 
                 <div class="w-full space-y-4">
 
                     <div class="text-left">
-                        <label class="block text-sm font-medium text-slate-700 mb-1">User Name</label>
 
-                        <select id="user-select" class="w-full p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-shadow outline-none bg-white text-slate-700 font-medium">
+                        <label
+                            class="block text-sm font-medium text-slate-700 mb-1"
+                        >
+                            User Name
+                        </label>
 
-                            <option value="">-- Select your name --</option>
+                        <select
+                            id="user-select"
+                            class="w-full p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-shadow outline-none bg-white text-slate-700 font-medium"
+                        >
+                            <option value="">
+                                -- Select your name --
+                            </option>
 
-                            <option value="Paula Grimm">Paula Grimm</option>
-                            <option value="Suzannah Holsenbeck">Suzannah Holsenbeck</option>
-                            <option value="Shitu Rajbhandari">Shitu Rajbhandari</option>
-                            <option value="Larry Ferguson">Larry Ferguson</option>
-                            <option value="Alex Hunter">Alex Hunter</option>
-                            <option value="Brittany Shelton">Brittany Shelton</option>
-                            <option value="Claudeliz Martinez">Claudeliz Martinez</option>
-                            <option value="Cynthia Beuns-Parker">Cynthia Beuns-Parker</option>
-                            <option value="Evelyn Tomasello">Evelyn Tomasello</option>
-                            <option value="Kascia Williams">Kascia Williams</option>
-                            <option value="Pam Katynski">Pam Katynski</option>
-                            <option value="Vicki Roberts">Vicki Roberts</option>
+                            <option value="Paula Grimm">
+                                Paula Grimm
+                            </option>
 
-                            <option value="Participant 1">Participant 1</option>
-                            <option value="Participant 2">Participant 2</option>
-                            <option value="Participant 3">Participant 3</option>
+                            <option value="Suzannah Holsenbeck">
+                                Suzannah Holsenbeck
+                            </option>
+
+                            <option value="Shitu Rajbhandari">
+                                Shitu Rajbhandari
+                            </option>
+
+                            <option value="Larry Ferguson">
+                                Larry Ferguson
+                            </option>
+
+                            <option value="Alex Hunter">
+                                Alex Hunter
+                            </option>
+
+                            <option value="Brittany Shelton">
+                                Brittany Shelton
+                            </option>
+
+                            <option value="Claudeliz Martinez">
+                                Claudeliz Martinez
+                            </option>
+
+                            <option value="Cynthia Beuns-Parker">
+                                Cynthia Beuns-Parker
+                            </option>
+
+                            <option value="Evelyn Tomasello">
+                                Evelyn Tomasello
+                            </option>
+
+                            <option value="Kascia Williams">
+                                Kascia Williams
+                            </option>
+
+                            <option value="Pam Katynski">
+                                Pam Katynski
+                            </option>
+
+                            <option value="Vicki Roberts">
+                                Vicki Roberts
+                            </option>
+
+                            <option value="Participant 1">
+                                Participant 1
+                            </option>
+
+                            <option value="Participant 2">
+                                Participant 2
+                            </option>
+
+                            <option value="Participant 3">
+                                Participant 3
+                            </option>
+
+                            <option value="Annexbox testing">
+                                Annexbox testing
+                            </option>
 
                         </select>
                     </div>
 
                     <div class="text-left">
-                        <label class="block text-sm font-medium text-slate-700 mb-1">Date</label>
+
+                        <label
+                            class="block text-sm font-medium text-slate-700 mb-1"
+                        >
+                            Date
+                        </label>
 
                         <input
                             type="date"
                             id="input-date"
                             class="w-full p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-shadow outline-none text-slate-700"
                         >
+
                     </div>
 
                 </div>
 
-                <button id="btn-login" class="btn w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700 shadow-md">
+                <button
+                    id="btn-login"
+                    class="btn w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700 shadow-md"
+                >
                     Access Dashboard
                 </button>
 
             </div>
 
+
             <!-- SCREEN 2: DASHBOARD -->
-            <div id="screen-dashboard" class="hide flex-1 flex flex-col">
+            <div
+                id="screen-dashboard"
+                class="hide flex-1 flex flex-col"
+            >
 
                 <div class="mb-8">
-                    <h2 class="text-2xl font-bold text-slate-800">Your Modules</h2>
-                    <p class="text-slate-500">Select a module below to train or retake assessments.</p>
+
+                    <h2 class="text-2xl font-bold text-slate-800">
+                        Your Modules
+                    </h2>
+
+                    <p class="text-slate-500">
+                        Select a module below to train or retake assessments.
+                    </p>
+
                 </div>
 
-                <div id="module-list" class="grid gap-4 md:grid-cols-2">
+                <div
+                    id="module-list"
+                    class="grid gap-4 md:grid-cols-2"
+                >
                     <!-- Modules injected by JS -->
                 </div>
 
             </div>
 
-            <!-- SCREEN 3: VIDEO LEARNING -->
-            <div id="screen-video" class="hide flex-1 flex flex-col">
 
-                <button class="btn-back text-indigo-600 font-semibold mb-4 inline-flex items-center hover:text-indigo-800 w-fit">
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            <!-- SCREEN 3: VIDEO LEARNING -->
+            <div
+                id="screen-video"
+                class="hide flex-1 flex flex-col"
+            >
+
+                <button
+                    class="btn-back text-indigo-600 font-semibold mb-4 inline-flex items-center hover:text-indigo-800 w-fit"
+                >
+
+                    <svg
+                        class="w-4 h-4 mr-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"
+                        ></path>
                     </svg>
 
                     Back to Modules
+
                 </button>
 
-                <h2 id="video-title" class="text-2xl font-bold text-slate-800 mb-6">
+                <h2
+                    id="video-title"
+                    class="text-2xl font-bold text-slate-800 mb-6"
+                >
                     Module Title
                 </h2>
 
-                <div id="video-wrapper" class="video-container mb-8">
+                <div
+                    id="video-wrapper"
+                    class="video-container mb-8"
+                >
                     <!-- Iframe injected by JS -->
                 </div>
 
-                <div class="mt-auto pt-6 border-t border-slate-200 text-center">
+                <div
+                    class="mt-auto pt-6 border-t border-slate-200 text-center"
+                >
 
                     <p class="text-slate-500 mb-4 text-sm">
                         Once you have finished the video, proceed to test your knowledge.
                     </p>
 
-                    <button id="btn-start-quiz" class="btn w-full md:w-auto md:px-12 bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700 shadow-md">
+                    <button
+                        id="btn-start-quiz"
+                        class="btn w-full md:w-auto md:px-12 bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700 shadow-md"
+                    >
                         Start Assessment
                     </button>
 
@@ -168,26 +370,41 @@
 
             </div>
 
+
             <!-- SCREEN 4: QUIZ -->
-            <div id="screen-quiz" class="hide flex-1 flex flex-col max-w-2xl mx-auto w-full">
+            <div
+                id="screen-quiz"
+                class="hide flex-1 flex flex-col max-w-2xl mx-auto w-full"
+            >
 
                 <div class="mb-8">
 
-                    <span id="quiz-counter" class="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-2 block">
+                    <span
+                        id="quiz-counter"
+                        class="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-2 block"
+                    >
                         Question 1 of X
                     </span>
 
-                    <h2 id="question-text" class="text-xl font-bold text-slate-800">
+                    <h2
+                        id="question-text"
+                        class="text-xl font-bold text-slate-800"
+                    >
                         Question text...
                     </h2>
 
                 </div>
 
-                <div id="options-container" class="space-y-3 mb-8">
+                <div
+                    id="options-container"
+                    class="space-y-3 mb-8"
+                >
                     <!-- Options injected here -->
                 </div>
 
-                <div class="mt-auto pt-4 flex flex-col items-center">
+                <div
+                    class="mt-auto pt-4 flex flex-col items-center"
+                >
 
                     <button
                         id="btn-check"
@@ -201,12 +418,24 @@
 
             </div>
 
+
             <!-- SCREEN 5: END / RESULTS -->
-            <div id="screen-end" class="hide flex-1 flex flex-col items-center justify-center text-center max-w-md mx-auto">
+            <div
+                id="screen-end"
+                class="hide flex-1 flex flex-col items-center justify-center text-center max-w-md mx-auto"
+            >
 
-                <div id="sync-status" class="text-sm font-semibold text-slate-500 mb-6 flex items-center justify-center gap-2">
+                <div
+                    id="sync-status"
+                    class="text-sm font-semibold text-slate-500 mb-6 flex items-center justify-center gap-2"
+                >
 
-                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <svg
+                        class="animate-spin -ml-1 mr-3 h-5 w-5 text-indigo-500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                    >
 
                         <circle
                             class="opacity-25"
@@ -229,21 +458,36 @@
 
                 </div>
 
-                <div id="result-icon" class="mb-4"></div>
+                <div
+                    id="result-icon"
+                    class="mb-4"
+                ></div>
 
-                <h2 id="result-title" class="text-3xl font-bold text-slate-800 mb-2">
+                <h2
+                    id="result-title"
+                    class="text-3xl font-bold text-slate-800 mb-2"
+                >
                     Module Complete
                 </h2>
 
-                <p id="result-message" class="text-slate-600 mb-8 leading-relaxed"></p>
+                <p
+                    id="result-message"
+                    class="text-slate-600 mb-8 leading-relaxed"
+                ></p>
 
-                <div class="bg-white border border-slate-200 rounded-xl p-6 w-full shadow-sm mb-8">
+                <div
+                    class="bg-white border border-slate-200 rounded-xl p-6 w-full shadow-sm mb-8"
+                >
 
-                    <p class="text-sm text-slate-500 uppercase tracking-wide font-bold mb-1">
+                    <p
+                        class="text-sm text-slate-500 uppercase tracking-wide font-bold mb-1"
+                    >
                         Final Score
                     </p>
 
-                    <div class="text-4xl font-extrabold text-indigo-600">
+                    <div
+                        class="text-4xl font-extrabold text-indigo-600"
+                    >
                         <span id="score-value">0</span>%
                     </div>
 
@@ -275,30 +519,47 @@
 
         </main>
 
+
         <!-- OVERLAY FEEDBACK FOR QUIZ -->
-        <div id="feedback-overlay" class="hide absolute bottom-0 left-0 w-full bg-white border-t border-slate-200 p-6 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] z-20 flex flex-col sm:flex-row items-center justify-between gap-4 transition-transform translate-y-0">
+        <div
+            id="feedback-overlay"
+            class="hide absolute bottom-0 left-0 w-full bg-white border-t border-slate-200 p-6 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] z-20 flex flex-col sm:flex-row items-center justify-between gap-4 transition-transform translate-y-0"
+        >
 
             <div class="flex-1">
 
                 <div class="flex items-center gap-3 mb-2">
 
-                    <div id="fb-icon" class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-white"></div>
+                    <div
+                        id="fb-icon"
+                        class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-white"
+                    ></div>
 
-                    <h3 id="fb-title" class="text-xl font-bold"></h3>
+                    <h3
+                        id="fb-title"
+                        class="text-xl font-bold"
+                    ></h3>
 
                 </div>
 
-                <p id="fb-text" class="text-slate-600 text-sm leading-relaxed max-w-xl"></p>
+                <p
+                    id="fb-text"
+                    class="text-slate-600 text-sm leading-relaxed max-w-xl"
+                ></p>
 
             </div>
 
-            <button id="btn-next" class="btn w-full sm:w-auto px-8 py-3 rounded-lg font-bold text-white shadow-md whitespace-nowrap">
+            <button
+                id="btn-next"
+                class="btn w-full sm:w-auto px-8 py-3 rounded-lg font-bold text-white shadow-md whitespace-nowrap"
+            >
                 Continue
             </button>
 
         </div>
 
     </div>
+
 
     <script>
 
@@ -329,7 +590,8 @@
                             { t: "Inventory app", c: false }
                         ],
 
-                        exp: "The Apps menu is Odoo's home screen: every tile there is an app you have access to, standard ones plus custom ones like Book Requests."
+                        exp:
+                            "The Apps menu is Odoo's home screen: every tile there is an app you have access to, standard ones plus custom ones like Book Requests."
                     },
 
                     {
@@ -342,7 +604,8 @@
                             { t: "Use arrows and enter keys to select the app", c: false }
                         ],
 
-                        exp: "Ctrl+K (Cmd+K on Mac) opens the command palette, letting you search and jump anywhere in Odoo from the keyboard."
+                        exp:
+                            "Ctrl+K (Cmd+K on Mac) opens the command palette, letting you search and jump anywhere in Odoo from the keyboard."
                     },
 
                     {
@@ -355,7 +618,8 @@
                             { t: "The Settings app", c: false }
                         ],
 
-                        exp: "Preferences includes a Language field where you can search for and select any language installed in the database."
+                        exp:
+                            "Preferences includes a Language field where you can search for and select any language installed in the database."
                     },
 
                     {
@@ -368,7 +632,8 @@
                             { t: "SMS, or email updates", c: false }
                         ],
 
-                        exp: "You can choose to get notifications by email or handle them entirely inside Odoo, whichever fits how you work."
+                        exp:
+                            "You can choose to get notifications by email or handle them entirely inside Odoo, whichever fits how you work."
                     },
 
                     {
@@ -381,7 +646,8 @@
                             { t: "Changes the interface to dark mode", c: false }
                         ],
 
-                        exp: "2FA adds an extra login verification step, which is recommended for anyone working with sensitive data like donor or family records."
+                        exp:
+                            "2FA adds an extra login verification step, which is recommended for anyone working with sensitive data like donor or family records."
                     },
 
                     {
@@ -394,7 +660,8 @@
                             { t: "Open the Actions menu and select Archive", c: false }
                         ],
 
-                        exp: "Deleting a record is done from the Actions menu — and should be done carefully, since it can affect linked records like orders."
+                        exp:
+                            "Deleting a record is done from the Actions menu — and should be done carefully, since it can affect linked records like orders."
                     },
 
                     {
@@ -407,7 +674,8 @@
                             { t: "Just going back to the Apps menu", c: false }
                         ],
 
-                        exp: "The breadcrumb remembers your path — clicking an earlier step takes you right back to that screen, exactly where you left off."
+                        exp:
+                            "The breadcrumb remembers your path — clicking an earlier step takes you right back to that screen, exactly where you left off."
                     },
 
                     {
@@ -420,7 +688,8 @@
                             { t: "Open the symbol next to the headers and click the checkbox next to the column name", c: false }
                         ],
 
-                        exp: "Clicking a column header sorts by column — click once for ascending, click again to reverse to descending."
+                        exp:
+                            "Clicking a column header sorts by column — click once for ascending, click again to reverse to descending."
                     },
 
                     {
@@ -433,7 +702,8 @@
                             { t: "There is no difference", c: false }
                         ],
 
-                        exp: "Filtering reduces the record set to match a condition, while Group By keeps every record but organizes them into collapsible sections."
+                        exp:
+                            "Filtering reduces the record set to match a condition, while Group By keeps every record but organizes them into collapsible sections."
                     },
 
                     {
@@ -446,7 +716,8 @@
                             { t: "Create a Custom Group", c: false }
                         ],
 
-                        exp: "Add Custom Filter lets you pick a field, a comparison, and a value to build exactly the condition you need."
+                        exp:
+                            "Add Custom Filter lets you pick a field, a comparison, and a value to build exactly the condition you need."
                     },
 
                     {
@@ -459,7 +730,8 @@
                             { t: "Open the Actions menu and click Save current search", c: false }
                         ],
 
-                        exp: "Save current search stores your filter and grouping combo as a Favorite, so you can reapply it in one click instead of rebuilding it."
+                        exp:
+                            "Save current search stores your filter and grouping combo as a Favorite, so you can reapply it in one click instead of rebuilding it."
                     },
 
                     {
@@ -472,11 +744,13 @@
                             { t: "Under Favorites in the search dropdown; Archive it from the edit favorite option", c: false }
                         ],
 
-                        exp: "Saved searches live under Favorites in the search dropdown, alongside any others already saved — you can edit or delete one from there."
+                        exp:
+                            "Saved searches live under Favorites in the search dropdown, alongside any others already saved — you can edit or delete one from there."
                     }
 
                 ]
             },
+
 
             {
                 id: 'mod2',
@@ -484,6 +758,7 @@
                 videoUrl: "",
                 questions: []
             },
+
 
             {
                 id: 'mod3',
@@ -505,7 +780,8 @@
                             { t: "It changes how the same set of records is displayed without adding or removing data.", c: true }
                         ],
 
-                        exp: "Changing views alters the layout and presentation format of the records while preserving the exact same record set and count."
+                        exp:
+                            "Changing views alters the layout and presentation format of the records while preserving the exact same record set and count."
                     },
 
                     {
@@ -518,7 +794,8 @@
                             { t: "Filters can only be applied when working within Reporting views.", c: false }
                         ],
 
-                        exp: "Filters operate independently of display layouts, allowing any active filter to persist when switching between different views."
+                        exp:
+                            "Filters operate independently of display layouts, allowing any active filter to persist when switching between different views."
                     },
 
                     {
@@ -531,7 +808,8 @@
                             { t: "It is a permission level that restricts record modification for standard users.", c: false }
                         ],
 
-                        exp: "Reports group and aggregate data into analytical structures like charts and pivot tables rather than showing record-by-record lists."
+                        exp:
+                            "Reports group and aggregate data into analytical structures like charts and pivot tables rather than showing record-by-record lists."
                     },
 
                     {
@@ -544,7 +822,8 @@
                             { t: "Only text and string fields", c: false }
                         ],
 
-                        exp: "Pivot calculations rely on mathemathical aggregation, which requires numeric values like quantities or amounts."
+                        exp:
+                            "Pivot calculations rely on mathemathical aggregation, which requires numeric values like quantities or amounts."
                     },
 
                     {
@@ -557,7 +836,8 @@
                             { t: "By switching repeatedly between Graph view and List view.", c: false }
                         ],
 
-                        exp: "Nested breakdowns are formed by sequentially adding groups within existing group levels using the plus icon."
+                        exp:
+                            "Nested breakdowns are formed by sequentially adding groups within existing group levels using the plus icon."
                     },
 
                     {
@@ -570,7 +850,8 @@
                             { t: "CSV file", c: false }
                         ],
 
-                        exp: "The dowload option in Pivot view allows users to export aggregated table data directly into an Excel spreadsheet."
+                        exp:
+                            "The dowload option in Pivot view allows users to export aggregated table data directly into an Excel spreadsheet."
                     },
 
                     {
@@ -583,7 +864,8 @@
                             { t: "Bar charts, line charts, and pie charts", c: true }
                         ],
 
-                        exp: "Graph view provides bar charts for proportional distributions."
+                        exp:
+                            "Graph view provides bar charts for proportional distributions."
                     },
 
                     {
@@ -596,7 +878,8 @@
                             { t: "Under the Measures dropdown in Pivot view", c: false }
                         ],
 
-                        exp: "A small icon positioned at the far end of table column headers opens the toggle menu for optional columns."
+                        exp:
+                            "A small icon positioned at the far end of table column headers opens the toggle menu for optional columns."
                     },
 
                     {
@@ -609,7 +892,8 @@
                             { t: "The visible columns reset to the default configuration of the saved favorite.", c: false }
                         ],
 
-                        exp: "Column selection are personal screen settings that are independent of filters and groupings."
+                        exp:
+                            "Column selection are personal screen settings that are independent of filters and groupings."
                     },
 
                     {
@@ -622,11 +906,13 @@
                             { t: "By applying a saved favorite search criteria.", c: false }
                         ],
 
-                        exp: "The view switcher in the upper-right corner allows users to switch Pivot or Graph views directly from standard app screens (if available for that app)."
+                        exp:
+                            "The view switcher in the upper-right corner allows users to switch Pivot or Graph views directly from standard app screens (if available for that app)."
                     }
 
                 ]
             },
+
 
             {
                 id: 'mod4',
@@ -648,7 +934,8 @@
                             { t: "Create the request, mark it Complete, and then create the delivery for the books.", c: false }
                         ],
 
-                        exp: "Every request is created, confirmed, and then Odoo generates the delivery. When the books go out, the request completes."
+                        exp:
+                            "Every request is created, confirmed, and then Odoo generates the delivery. When the books go out, the request completes."
                     },
 
                     {
@@ -661,7 +948,8 @@
                             { t: "Adult processing the order", c: false }
                         ],
 
-                        exp: "'Adult making the order' is the person placing the request, while 'Receiving Household or Organization' is the family or group that will actually receive the books."
+                        exp:
+                            "'Adult making the order' is the person placing the request, while 'Receiving Household or Organization' is the family or group that will actually receive the books."
                     },
 
                     {
@@ -674,7 +962,8 @@
                             { t: "All the fields mentioned in the other options are requiered", c: true }
                         ],
 
-                        exp: "Program, Initiative, Purpose, Delivery / Pick Up Date, Adult Making the Order and Receiving Household / Organization are required. Fields like Delivery Type, Number of Books Requested, and Language are additional."
+                        exp:
+                            "Program, Initiative, Purpose, Delivery / Pick Up Date, Adult Making the Order and Receiving Household / Organization are required. Fields like Delivery Type, Number of Books Requested, and Language are additional."
                     },
 
                     {
@@ -687,7 +976,8 @@
                             { t: "Only the items categorized as books", c: true }
                         ],
 
-                        exp: "Items categorized as something else can be on the order, but they are not counted in Total Ordered."
+                        exp:
+                            "Items categorized as something else can be on the order, but they are not counted in Total Ordered."
                     },
 
                     {
@@ -700,7 +990,8 @@
                             { t: "Odoo saves the request, but you must create the delivery manually.", c: false }
                         ],
 
-                        exp: "Confirming saves the request and automatically creates the delivery. 'In Process' means the request was received but the books haven't gone out yet."
+                        exp:
+                            "Confirming saves the request and automatically creates the delivery. 'In Process' means the request was received but the books haven't gone out yet."
                     },
 
                     {
@@ -713,7 +1004,8 @@
                             { t: "Mark the request Complete and start a new one with the correct edition.", c: false }
                         ],
 
-                        exp: "Before confirmation you can simply edit the line and save. After confirmation, changes may be restricted, so you may need to cancel and recreate the request."
+                        exp:
+                            "Before confirmation you can simply edit the line and save. After confirmation, changes may be restricted, so you may need to cancel and recreate the request."
                     },
 
                     {
@@ -726,7 +1018,8 @@
                             { t: "That the household has paid for the books.", c: false }
                         ],
 
-                        exp: "Validating the delivery records that the books left the warehouse and removes them from inventory. If some items are unavailable, Odoo offers to create a backorder."
+                        exp:
+                            "Validating the delivery records that the books left the warehouse and removes them from inventory. If some items are unavailable, Odoo offers to create a backorder."
                     },
 
                     {
@@ -739,7 +1032,8 @@
                             { t: "Open the contact record and click the Book Requests button.", c: true }
                         ],
 
-                        exp: "From a contact record, the Book Requests button shows every request associated with that family or organization."
+                        exp:
+                            "From a contact record, the Book Requests button shows every request associated with that family or organization."
                     },
 
                     {
@@ -752,11 +1046,13 @@
                             { t: "It changes when the household confirms receipt in Contacts.", c: false }
                         ],
 
-                        exp: "The status updates automatically after the delivery is completed, so there is no need to mark it Complete by hand."
+                        exp:
+                            "The status updates automatically after the delivery is completed, so there is no need to mark it Complete by hand."
                     }
 
                 ]
             },
+
 
             {
                 id: 'mod5',
@@ -959,12 +1255,14 @@
 
             Object.values(screens)
                 .forEach(
-                    s => s.classList.add('hide')
+                    s =>
+                        s.classList.add('hide')
                 );
 
             screens[name]
                 .classList
                 .remove('hide');
+
 
             $('progress-bar-container')
                 .classList
@@ -973,6 +1271,7 @@
                     !['video', 'quiz']
                         .includes(name)
                 );
+
 
             if (name !== 'quiz') {
 
@@ -987,7 +1286,9 @@
 
         function setProgress(percent) {
 
-            $('progress-bar').style.width =
+            $('progress-bar')
+                .style
+                .width =
                 `${percent}%`;
 
         }
@@ -1004,13 +1305,15 @@
                 () => {
 
                     const selectedVal =
-                        $('user-select').value;
+                        $('user-select')
+                            .value;
 
                     const name =
                         selectedVal;
 
                     const date =
-                        $('input-date').value;
+                        $('input-date')
+                            .value;
 
 
                     if (!selectedVal) {
@@ -1041,6 +1344,7 @@
                         .classList
                         .remove('hide');
 
+
                     $('header-name')
                         .textContent =
                         name;
@@ -1066,12 +1370,16 @@
                         date: ""
                     };
 
-                    $('user-select').value =
+
+                    $('user-select')
+                        .value =
                         "";
+
 
                     $('header-user-info')
                         .classList
                         .add('hide');
+
 
                     showScreen(
                         'login'
@@ -1086,6 +1394,7 @@
 
             const list =
                 $('module-list');
+
 
             list.innerHTML =
                 '';
@@ -1632,7 +1941,8 @@
                         const correctOpt =
                             qData.options
                                 .find(
-                                    o => o.c
+                                    o =>
+                                        o.c
                                 )
                                 .t;
 
