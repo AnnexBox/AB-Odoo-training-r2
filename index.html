@@ -755,10 +755,110 @@
             {
                 id: 'mod2',
                 title: "2. Understanding Contacts",
-                videoUrl: "",
-                questions: []
+                videoUrl: "https://drive.google.com/file/d/1j8A9cu__xZ_dk9kMFCoh8Mkl79rHWR6u/preview",
+                questions: [
+                    {
+                        q: "Which four kinds of contacts does Read to Grow keep in Odoo?",
+                        options: [
+                            { t: "Donors, suppliers, staff, and children", c: false },
+                            { t: "Customers, donors, employees, and children", c: false },
+                            { t: "Households, adults, children, and organizations", c: true },
+                            { t: "Families, adults, children, and staff", c: false }
+                        ],
+                        exp: "Contacts are organized as households, adults, children, and organizations."
+                    },
+                    {
+                        q: "What is the first thing to check when you open any contact record?",
+                        options: [
+                            { t: "The Customer Type", c: true },
+                            { t: "The Household name", c: false },
+                            { t: "The Language preference", c: false },
+                            { t: "The Affiliations tab", c: false }
+                        ],
+                        exp: "Customer Type (Household, Adult, Child, or Organization) tells you what kind of record you are looking at."
+                    },
+                    {
+                        q: "How can you quickly look at only households or only organizations in the Contacts list?",
+                        options: [
+                            { t: "Sort the list alphabetically by name.", c: false },
+                            { t: "Open each record and check its type.", c: false },
+                            { t: "Search for the word 'Household' or 'Organization'.", c: false },
+                            { t: "Filter the list by Customer Type.", c: true }
+                        ],
+                        exp: "Filtering the whole list by Customer Type is a quick way to show only one kind of contact."
+                    },
+                    {
+                        q: "Which ID prefixes identify the contacts by type?",
+                        options: [
+                            { t: "HOU, PER, and ORG", c: false },
+                            { t: "HH, IND, and ORG", c: true },
+                            { t: "FAM, IND, and ORG", c: false },
+                            { t: "HH, PER, and ORG", c: false }
+                        ],
+                        exp: "Households start with HH, individuals (adults and children) start with IND, and organizations start with ORG."
+                    },
+                    {
+                        q: "Two households have the same last name. How can you tell them apart?",
+                        options: [
+                            { t: "The household entry includes the name of an adult.", c: true },
+                            { t: "Only one of them will have a Book Requests button.", c: false },
+                            { t: "Only one of them will have a Customer Type.", c: false },
+                            { t: "The one created first never ends with the word 'Household'.", c: false }
+                        ],
+                        exp: "Household names end with 'Household', and when families share a last name, the entry also includes an adult's name. The unique ID can help too."
+                    },
+                    {
+                        q: "What do the Adults, Children, and Book Requests buttons at the top of a household do?",
+                        options: [
+                            { t: "They create a new adult, child, or request for the household.", c: false },
+                            { t: "They take you to the people in the family and to every request for that household.", c: true },
+                            { t: "They filter the whole Contacts list by that category.", c: false },
+                            { t: "They export the household's information to a spreadsheet.", c: false }
+                        ],
+                        exp: "Adults and Children open the people in the family, and Book Requests shows every request for that household."
+                    },
+                    {
+                        q: "On an adult's record, the address field says Region and appears gray. What does this mean?",
+                        options: [
+                            { t: "The adult has no address on file.", c: false },
+                            { t: "The adult belongs to an organization instead of a household.", c: false },
+                            { t: "The record is archived and can no longer be edited.", c: false },
+                            { t: "The value is copied from the household and must be changed there.", c: true }
+                        ],
+                        exp: "On adults and children, the address values are copied from the household. To change them, go to the household."
+                    },
+                    {
+                        q: "What does the Affiliations tab on an adult's record show?",
+                        options: [
+                            { t: "The organizations the person is connected to.", c: true },
+                            { t: "The household members who share the same address.", c: false },
+                            { t: "The book requests placed by the person.", c: false },
+                            { t: "The children the adult is responsible for.", c: false }
+                        ],
+                        exp: "Affiliations connect a person to organizations and show their role, such as a teacher at a school."
+                    },
+                    {
+                        q: "What extra information does a child's Individual Info section include compared to an adult's?",
+                        options: [
+                            { t: "Language spoken at home", c: false },
+                            { t: "The child's date of birth, and book preferences", c: true },
+                            { t: "The date the record was created", c: false },
+                            { t: "The parent's contact information", c: false }
+                        ],
+                        exp: "Children have the same fields as adults, plus date of birth, age, and some useful book preferences."
+                    },
+                    {
+                        q: "What does the Book Requests button on an organization's record show?",
+                        options: [
+                            { t: "Every request placed by the people affiliated with it, regardless of the receiver", c: false },
+                            { t: "Only the requests that have been declined", c: false },
+                            { t: "Every request where the organization is the receiver", c: true },
+                            { t: "Every request for the households in the same County", c: false }
+                        ],
+                        exp: "On an organization, the Book Requests button lists the requests where that organization is the receiver."
+                    }
+                ]
             },
-
 
             {
                 id: 'mod3',
@@ -1065,14 +1165,156 @@
                 id: 'mod6',
                 title: "6. Looking up customer orders",
                 videoUrl: "",
-                questions: []
+                questions: [
+                    {
+                        q: "What is the fastest way to find all the past requests of a specific family?",
+                        options: [
+                            { t: "Open the household in Contacts and click its Book Requests button.", c: true },
+                            { t: "Open the Inventory app and check the latest deliveries filtering by the household.", c: false },
+                            { t: "Open each adult in the family and review their Book Requests tab.", c: false },
+                            { t: "Filter the Contacts list by Customer Type.", c: false }
+                        ],
+                        exp: "The Book Requests button on the household record opens every request for that family."
+                    },
+                    {
+                        q: "How can you search for a household in Contacts?",
+                        options: [
+                            { t: "By typing the family's last name", c: false },
+                            { t: "By typing the family's last name plus the word 'household'", c: true },
+                            { t: "By typing the Adult's full name plus the word 'household'", c: false },
+                            { t: "By typing the Adult's individual ID plus the word 'household'", c: false }
+                        ],
+                        exp: "Household names end with the word 'Household' and start with the last name of the family."
+                    },
+                    {
+                        q: "What does the Book Requests button show on an organization's contact?",
+                        options: [
+                            { t: "Every request placed by the people affiliated with it", c: false },
+                            { t: "Only the requests that are still In Process", c: false },
+                            { t: "Every request from the households in the same County", c: false },
+                            { t: "All the orders where the organization is the receiver", c: true }
+                        ],
+                        exp: "For organizations it works the same way as for households: the button shows all the orders where the organization is the receiver."
+                    },
+                    {
+                        q: "When is it useful to search directly from the Book Requests list instead of from a contact?",
+                        options: [
+                            { t: "When you are not sure whether the contact is a household or an organization", c: false },
+                            { t: "When you only remember a name.", c: false },
+                            { t: "Both are correct.", c: true },
+                            { t: "Both are incorrect.", c: false }
+                        ],
+                        exp: "Searching from the Book Requests list is helpful when you don't know the contact type or only remember a name."
+                    },
+                    {
+                        q: "Once you open a request from the list, how do you return to the list of requests?",
+                        options: [
+                            { t: "Go back to the Apps menu and click Book Requests.", c: false },
+                            { t: "Click book requests at the breadcrumbs path.", c: true },
+                            { t: "Click the preview button.", c: false },
+                            { t: "Click the Book Requests smart button.", c: false }
+                        ],
+                        exp: "The breadcrumb at the top lets you go back to the previous list."
+                    }
+                ]
             },
 
             {
                 id: 'mod7',
                 title: "7. Entering donated books",
                 videoUrl: "",
-                questions: []
+                questions: [
+                    {
+                        q: "Where do you start recording a book donation in Odoo?",
+                        options: [
+                            { t: "Inventory app, then Operations, then Replenishment, then New", c: false },
+                            { t: "Inventory app, then Operations, then Receipts, then New", c: true },
+                            { t: "Inventory app, then Products, then New", c: false },
+                            { t: "Inventory app, then Operations, then Physical Inventory, then New", c: false }
+                        ],
+                        exp: "Every donation is recorded as a receipt, created from Inventory > Operations > Receipts > New."
+                    },
+                    {
+                        q: "How are gently used books and new books recorded?",  // chequear porque hay muchas categorias de gently used books
+                        options: [
+                            { t: "Both are recorded by ISBN and title.", c: false },
+                            { t: "Both are recorded under the Gently Used Books collection.", c: false },
+                            { t: "Gently used books go under the Gently Used Books collection; new books are recorded by ISBN and title.", c: true },
+                            { t: "Gently used books are recorded by ISBN; new books go under a collection.", c: false }
+                        ],
+                        exp: "Gently used books are entered under the Gently Used Books collection, while new books are usually recorded by title or ISBN."
+                    },
+                    {
+                        q: "What should be set in the Donor field of a receipt?",
+                        options: [
+                            { t: "The person processing the donation", c: false },
+                            { t: "The person who donated the books", c: false },
+                            { t: "The household or organization that donated the books", c: true },
+                            { t: "The recipient of the books", c: false }
+                        ],
+                        exp: "Donor is the household or organization that donated. The 'Receive From' field is for the person making the donation."
+                    },
+                    {
+                        q: "The donation happened last week, but you are entering it today. What should you put in Date Donated?",
+                        options: [
+                            { t: "Today's date, since that is when it was entered", c: false },
+                            { t: "Leave it empty so Odoo fills it in", c: false },
+                            { t: "The date of the first book request for that donor", c: false },
+                            { t: "The date the donation actually happened, because reports are based on it", c: true }
+                        ],
+                        exp: "Date Donated should reflect when the donation actually happened. Date Entered is filled in automatically by Odoo."
+                    },
+                    {
+                        q: "Why do you set the Destination Location to the program's location?",
+                        options: [
+                            { t: "Because the warehouse has sub-locations for each program, and the books must go to the right one.", c: true },
+                            { t: "Because it determines which donor receives the credit.", c: false },
+                            { t: "Because it sets the language of the books.", c: false },
+                            { t: "Because it automatically creates a delivery for the books.", c: false }
+                        ],
+                        exp: "Read to Grow's warehouse has a sub-location for each program, so the destination should match the program the books are going toward."
+                    },
+                    {
+                        q: "On which tab do you add the books to a donation receipt?",
+                        options: [
+                            { t: "Books", c: false },
+                            { t: "Operations", c: true },
+                            { t: "Items", c: false },
+                            { t: "Products", c: false }
+                        ],
+                        exp: "Books are added on the Operations tab. To add them you click on the 'Add a Product' button."
+                    },
+                    {
+                        q: "How do you enter gently used books on the receipt?", // checkear porque hay muchas categorias de gently used books
+                        options: [
+                            { t: "Add the individual title and add a note about the condition.", c: false },
+                            { t: "Search for the title and select the version that has '(gently used)' at the end.", c: false },
+                            { t: "Create a new product for each title, add '(gently used)' at the end.", c: false },
+                            { t: "Search for the Gently Used Books collection.", c: true }
+                        ],
+                        exp: "Gently used books are not searched by title. You select the matching Gently Used Books collection and enter the total quantity received."
+                    },
+                    {
+                        q: "How is the Qty Kept field calculated?",
+                        options: [
+                            { t: "You type it in manually after counting the books.", c: false },
+                            { t: "Automatically: Qty Received minus Qty Discarded", c: true },
+                            { t: "Automatically: Qty Received plus Qty Discarded", c: false },
+                            { t: "Automatically from the number of books requested by families", c: false }
+                        ],
+                        exp: "Qty Kept is Received minus Discarded, calculated automatically, so you never type it in yourself."
+                    },
+                    {
+                        q: "Someone donates X copies of the same book, intended for different programs. How should you record it?",
+                        options: [
+                            { t: "Create a single receipt and let Odoo split the copies between programs.", c: false },
+                            { t: "Create a separate receipt for each program.", c: true },
+                            { t: "Create one receipt and choose the program with the most copies.", c: false },
+                            { t: "Create one receipt and choose the 'multi-program' option in the Program field.", c: false }
+                        ],
+                        exp: "The same title can exist in several programs because the books are stored in different locations. So when a donation is meant for different programs, create a receipt for each program."
+                    }
+                ]
             },
 
             {
