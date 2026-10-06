@@ -1158,7 +1158,88 @@
                 id: 'mod5',
                 title: "5. Entering BFK data & daily order entry",
                 videoUrl: "https://drive.google.com/file/d/1Ugs-bK0SdkYHdnB2ZFWIYGoDzGEkgLdP/preview",
-                questions: []
+                questions: [
+                    {
+                        q: "How does a Books for Kids order reach you for entry into Odoo?",
+                        options: [
+                            { t: "Families email you the request, and you create it in Odoo before the books go out.", c: false },
+                            { t: "Requests are submitted online and print out automatically each day; once the order is pulled, delivered, or picked up, it is recorded on paper.", c: true },
+                            { t: "Odoo creates the request automatically from the online form, and you only validate it.", c: false },
+                            { t: "The warehouse sends you a spreadsheet at the end of each week.", c: false }
+                        ],
+                        exp: "Requests are submitted online and print daily. After the order is fulfilled, it is recorded on paper, and your job is to enter that paper record into Odoo."
+                    },
+                    {
+                        q: "What makes Books for Kids entry different from some other programs?",
+                        options: [
+                            { t: "You must use a scanner for every book.", c: false },
+                            { t: "The books have already gone out by the time you enter the order, so you are recording what happened.", c: true },
+                            { t: "The request must stay In Process until the family confirms receipt.", c: false },
+                            { t: "The request is created by the family, not by you.", c: false }
+                        ],
+                        exp: "In BFK entry, the order has already been fulfilled. You are recording what happened, not setting something up for later."
+                    },
+                    {
+                        q: "What is the first step when you have a paper record in hand?",
+                        options: [
+                            { t: "Create the Book Request and look for the household later.", c: false },
+                            { t: "Validate a delivery in the Inventory app.", c: false },
+                            { t: "Search the family in Contacts to check whether the household already exists.", c: true },
+                            { t: "Create a new household every time, to avoid duplicates.", c: false }
+                        ],
+                        exp: "Start by searching the family's last name in Contacts. Create the household and its members only if they aren't there."
+                    },
+                    {
+                        q: "If the family isn't in Contacts yet, what should you do?",
+                        options: [
+                            { t: "Create the household and its members first, then create the request.", c: true },
+                            { t: "Create the request and the household will be created automatically.", c: false },
+                            { t: "Skip the order and let the family submit it again.", c: false },
+                            { t: "Create the request without a Receiving Household or Organization.", c: false }
+                        ],
+                        exp: "If the household doesn't exist, create the household and its members first, as covered in the Contacts video."
+                    },
+                    {
+                        q: "Which values should the request have for these fields?",
+                        options: [
+                            { t: "Receiving Household or Organization = the one that received the books; Adult making the order = the person who placed the request; Program = Books for Kids", c: true },
+                            { t: "Receiving Household or Organization = the person who placed the request; Adult making the order = the family; Program = BFK Other", c: false },
+                            { t: "Receiving Household or Organization = the one that received the books; Adult making the order = you; Program = Books for Kids", c: false },
+                            { t: "Receiving Household or Organization = the one that received the books; Adult making the order = the person who placed the request; Program = Books to Go", c: false }
+                        ],
+                        exp: "The receiver goes in 'Receiving Household or Organization', the person who placed the request in 'Adult making the order', and Program is set to Books for Kids."
+                    },
+                    {
+                        q: "How do you make sure you add the right edition of each book?",
+                        options: [
+                            { t: "Search by title and match the language shown in brackets to what the paper record says.", c: true },
+                            { t: "Always pick the first result in the search list.", c: false },
+                            { t: "Type the quantity first, and Odoo will choose the edition.", c: false },
+                            { t: "Use the scanner to read the ISBN of every book.", c: false }
+                        ],
+                        exp: "Search by title and match the language shown in brackets to the paper record. The scanner isn't needed for this workflow."
+                    },
+                    {
+                        q: "Which of the following fields is NOT required on the request form?",
+                        options: [
+                            { t: "RTG Program", c: false },
+                            { t: "RTG Iniciative", c: false },
+                            { t: "Purpose", c: false },
+                            { t: "Language", c: true }
+                        ],
+                        exp: "The Language field is not required, but it is helpful to fill in if available."
+                    },
+                    {
+                        q: "What should you do with the delivery?",
+                        options: [
+                            { t: "Decline it.", c: false },
+                            { t: "Complete it right away, since the books already went out.", c: true },
+                            { t: "Create it manually.", c: false },
+                            { t: "Leave the delivery open for the warehouse.", c: false }
+                        ],
+                        exp: "After confirming the request, complete the delivery now rather than leaving it open, because the order already happened. The request then shows as Complete."
+                    }
+                ]
             },
 
             {
