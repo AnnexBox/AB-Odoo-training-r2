@@ -1512,14 +1512,156 @@
                 id: 'mod9',
                 title: "9. Running the First Year import wizard",
                 videoUrl: "",
-                questions: []
+                questions: [
+                    {
+                        q: "What is the main advantage of using the First Year import wizard?",
+                        options: [
+                            { t: "It lets you import a whole batch of mailed registrations at once instead of entering them one at a time.", c: true },
+                            { t: "It mails the books to the families automatically.", c: false },
+                            { t: "It replaces the need to have a Date of Birth for each baby.", c: false },
+                            { t: "It creates the surveys for each family.", c: false }
+                        ],
+                        exp: "The wizard is the faster way to enter First Year registrations: a whole batch of mailed registrations is imported at once."
+                    },
+                    {
+                        q: "Which import tool should you never use?",
+                        options: [
+                            { t: "The Import First-Year Registrations wizard", c: false },
+                            { t: "The Import Customers wizard", c: false },
+                            { t: "The Imports menu in the Contacts app", c: false },
+                            { t: "Odoo's native import", c: true }
+                        ],
+                        exp: "Always use the import wizards. Do not use Odoo's native import tool (the \"Import records\" option on list views). It looks simple but causes real problems for RTG's data. The native importer does not register external IDs, it does not handle household linking, and is really hard to undo."
+                    },
+                    {
+                        q: "Where do you find the First Year import wizard?",
+                        options: [
+                            { t: "Contacts app > Imports > Import Customers", c: false },
+                            { t: "Contacts app > Actions > Import Records", c: false },
+                            { t: "Contacts app > Imports > Import First-Year Registrations", c: true },
+                            { t: "RTG Reports > First Year Project > Import First-Year Registrations", c: false }
+                        ],
+                        exp: "Open the Contacts app, click Imports, and then choose Import First-Year Registrations."
+                    },
+                    {
+                        q: "What does the Download Template button give you?",
+                        options: [
+                            { t: "A report of all the children already registered", c: false },
+                            { t: "A blank Excel file with the columns the wizard expects", c: true },
+                            { t: "A list of the columns the wizard expects", c: false },
+                            { t: "A PDF with the steps to run the wizard", c: false }
+                        ],
+                        exp: "Download Template provides a blank Excel file with the exact columns this wizard expects."
+                    },
+                    {
+                        q: "Which of these columns is part of the template for First-Year Registrations?",
+                        options: [
+                            { t: "Baby's Gender", c: false },
+                            { t: "Program", c: false },
+                            { t: "Baby's Birth Date", c: true },
+                            { t: "Book preferences", c: false }
+                        ],
+                        exp: "The template includes columns such as First Name, Last Name, address fields, phone, email, Baby's Birth Date, Twins, Language preferences, and Hospital."
+                    },
+                    {
+                        q: "Can you add extra columns beyond the template?",
+                        options: [
+                            { t: "No, extra columns always cause an error.", c: false },
+                            { t: "Yes, always.", c: false },
+                            { t: "Yes, as long as the header matches a field name already in Odoo.", c: true },
+                            { t: "No, but you can fill the missing information manually after the import.", c: false }
+                        ],
+                        exp: "Extra columns are allowed as long as the header matches a field name that already exists in Odoo."
+                    },
+                    {
+                        q: "A row in your file has a problem. What happens, and is it safe to fix the file and run it again?",
+                        options: [
+                            { t: "The row is silently skipped, and re-running the file might create duplicates.", c: false },
+                            { t: "The row is deleted, and re-running the file might create duplicates.", c: false },
+                            { t: "The row is imported anyway, and you must fix it later in Contacts.", c: false },
+                            { t: "The row appears as an error in the log, and re-running the corrected file is safe.", c: true }
+                        ],
+                        exp: "Problem rows show up as errors instead of failing or being skipped silently. Making corrections and re-running the file is safe."
+                    }
+                ]
             },
 
             {
                 id: 'mod10',
                 title: "10. Creating mailing-list reports",
-                videoUrl: "",
-                questions: []
+                videoUrl: "https://drive.google.com/file/d/1Jcu6YtbgDf_gP5rjaWrP4XHwcb2Vil8g/preview",
+                questions: [
+                    {
+                        q: "Where do the First Year Project reports live in Odoo?",
+                        options: [
+                            { t: "Book Requests app > Reporting", c: false },
+                            { t: "RTG Reports app > Books for Babies group", c: false },
+                            { t: "Contacts app > First Year Project group", c: false },
+                            { t: "RTG Reports app > First Year Project group", c: true }
+                        ],
+                        exp: "The reports are found in the RTG Reports app, inside the First Year Project group."
+                    },
+                    {
+                        q: "What does the 3-Month Mailing report show by default?",
+                        options: [
+                            { t: "Children whose date of birth was about 3 months ago and who haven't been mailed yet.", c: true },
+                            { t: "Every child registered in the First Year Project.", c: false },
+                            { t: "Children who have received the 3-month mailing last month.", c: false },
+                            { t: "Every children about to turn 3 months old.", c: false }
+                        ],
+                        exp: "The report is filtered to children born about 3 months ago who haven't been mailed yet, which is the group you need for this month's mailing."
+                    },
+                    {
+                        q: "When is the All Children report useful?",
+                        options: [
+                            { t: "To mark children as mailed for the 12-month mailing", c: false },
+                            { t: "When you need to look something up outside the mailing window, since it has no age filter", c: true },
+                            { t: "To see only the children who haven't been mailed", c: false },
+                            { t: "To import new registrations", c: false }
+                        ],
+                        exp: "All Children is the full list with no age filter, which makes it useful for lookups outside the mailing window."
+                    },
+                    {
+                        q: "You want the rest of the team to see a view you created. What should you do?",
+                        options: [
+                            { t: "Email them a screenshot of the list.", c: false },
+                            { t: "Export the list and send it as an Excel file.", c: false },
+                            { t: "Save it as a favorite and check Share with all users.", c: true },
+                            { t: "Add it to the RTG Reports app.", c: false }
+                        ],
+                        exp: "Save the view as a favorite and use Share with all users if the rest of the team should see it too."
+                    },
+                    {
+                        q: "How do you record that a group of children was mailed from the report list?",
+                        options: [
+                            { t: "Open each child and type today's date.", c: false },
+                            { t: "Check the mailed children, then click Actions > Mark 3-Month Mailed.", c: true },
+                            { t: "Check the mailed children, then remove them from the Mailing list.", c: false },
+                            { t: "Check the 3-Month Mailed box and today's date will be added automatically.", c: false }
+                        ],
+                        exp: "Select the children who were mailed and use Actions > Mark 3-Month Mailed. It sets today's date as the Date mailed and checks the 3-month mailed box automatically."
+                    },
+                    {
+                        q: "How do you get the data you need to print mailing labels?",
+                        options: [
+                            { t: "Select the children, click Actions > Export, choose the address columns, and export as an Excel file.", c: true },
+                            { t: "Select the children, click Print > choose the address fields, and export as an Excel file.", c: false },
+                            { t: "Use the Import First-Year Registrations wizard.", c: false },
+                            { t: "Select the children, click Actions > Print Labels, and export as an Excel file.", c: false }
+                        ],
+                        exp: "Export the filtered list with the address columns (child name, household, street, city, state, zip) to Excel, then use Mail Merge in Word or Excel with a label template such as Avery."
+                    },
+                    {
+                        q: "Why should you sort the list by NJ Sort before exporting it for labels?",
+                        options: [
+                            { t: "It removes duplicate children from the export.", c: false },
+                            { t: "It marks the children as mailed automatically.", c: false },
+                            { t: "It converts the file to an Avery label template.", c: false },
+                            { t: "It puts the labels in mail route order, which can save on postage.", c: true }
+                        ],
+                        exp: "Sorting by NJ Sort puts the labels in mail route order, which can save on postage."
+                    }
+                ]
             },
 
             {
