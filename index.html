@@ -1404,7 +1404,108 @@
                 id: 'mod8',
                 title: "8. First Year / BFB data entry",
                 videoUrl: "https://drive.google.com/file/d/1hr_oB6nsZ2TyIFwruVE-fKCG35_w8-JM/preview",
-                questions: []
+                questions: [
+                    {
+                        q: "What does the First Year Project do?",
+                        options: [
+                            { t: "It mails books and surveys to families at 3 months and 12 months after a baby is born.", c: true },
+                            { t: "It delivers books to schools and libraries every month.", c: false },
+                            { t: "It records donated baby books.", c: false },
+                            { t: "It tracks the books requested by families with babies through the Book Requests app.", c: false }
+                        ],
+                        exp: "The First Year Project mails books and surveys to families at 3 months and 12 months after a baby is born."
+                    },
+                    {
+                        q: "When a registration arrives by mail, which records do you create in Odoo?",
+                        options: [
+                            { t: "The household, the adult, and the child", c: true },
+                            { t: "The adult, and the child", c: false },
+                            { t: "The household, the adult, and the vendor", c: false },
+                            { t: "The organization and the adult", c: false }
+                        ],
+                        exp: "A mailed registration requires creating the household, the adult, and the child."
+                    },
+                    {
+                        q: "What is the first thing to do before creating a new household from a mailed registration?",
+                        options: [
+                            { t: "Create the child, because the date of birth is the most important data.", c: false },
+                            { t: "Open RTG Reports and check the 3-Month Mailing list.", c: false },
+                            { t: "Create a new household and merge duplicates later if needed.", c: false },
+                            { t: "Check whether the family already exists in the system.", c: true }
+                        ],
+                        exp: "Always check first whether the family already exists, by searching the last name plus 'household'."
+                    },
+                    {
+                        q: "How do you add the parent and the baby to a new household?",
+                        options: [
+                            { t: "Create two separate contacts and link them in the Affiliations tab.", c: false },
+                            { t: "Use the Book Requests button and add them from there.", c: false },
+                            { t: "Use the smart buttons from the household record.", c: true },
+                            { t: "Create both from the 3-Month Mailing list.", c: false }
+                        ],
+                        exp: "From the household, use the Adults button (then New) for the parent and the Children button (then New) for the baby."
+                    },
+                    {
+                        q: "The mailing fields on a new child's record are empty. Is that a problem?",
+                        options: [
+                            { t: "Yes, you must fill them in before saving the child.", c: false },
+                            { t: "Yes, the child won't be included in any mailing list unless they are filled in.", c: false },
+                            { t: "No, it's expected because they haven't been mailed yet.", c: true },
+                            { t: "No, Odoo fills them in automatically when you enter the child's day of birth.", c: false }
+                        ],
+                        exp: "The mailing fields are empty at first because the books haven't been mailed yet. They are filled in when you mark the child as mailed."
+                    },
+                    {
+                        q: "Where do you enter the family's address so it appears on the adults and children automatically?",
+                        options: [
+                            { t: "On the parent's record", c: false },
+                            { t: "On the baby's record", c: false },
+                            { t: "On the household record", c: true },
+                            { t: "On each record, one at a time", c: false }
+                        ],
+                        exp: "The address is entered on the household, and the adults and children show it automatically. If you need to edit the address, do it on the household record."
+                    },
+                    {
+                        q: "Which list do you use for the monthly 3-month mailing?",
+                        options: [
+                            { t: "Book Requests > First Year Project > 3-Month Mailing", c: false },
+                            { t: "Inventory > Operations > Receipts", c: false },
+                            { t: "Contacts > Filter by 3-Month Mailed > Filter by DOB: 3 Months Ago", c: false },
+                            { t: "RTG Reports > First Year Project > 3-Month Mailing", c: true }
+                        ],
+                        exp: "The monthly mailing is processed from RTG Reports > First Year Project > 3-Month Mailing."
+                    },
+                    {
+                        q: "Which children should be on the 3-month list?",
+                        options: [
+                            { t: "Children whose date of birth was about 3 months ago and who haven't been mailed yet", c: true },
+                            { t: "All children registered this month whose date of birth was about 3 months ago", c: false },
+                            { t: "Children who were already mailed.", c: false },
+                            { t: "Children younger than 3 months.", c: false }
+                        ],
+                        exp: "The list should show children born about 3 months ago who haven't been mailed yet. They could be a little younger or older than 3 months."
+                    },
+                    {
+                        q: "After the books go out, how do you record that the children were mailed?",
+                        options: [
+                            { t: "Open each child and fill the 3-Month Mailed date.", c: false },
+                            { t: "Create a Book Request for each child and validate its delivery.", c: false },
+                            { t: "Delete the child from the 3-Month Mailing list.", c: false },
+                            { t: "Check the box next to each mailed child and mark them as mailed.", c: true }
+                        ],
+                        exp: "Select the mailed children, then use Actions > Mark 3-Month Mailed. It sets today's date and the child drops off the list. The 12-month mailing works the same way."
+                    },
+                    {
+                        q: "A family mails back a paper survey instead of answering online. What should you do?",
+                        options: [
+                            { t: "Discard it, since only online responses count.", c: false },
+                            { t: "Open the survey from their contact, click Start, and fill it in from the paper copy.", c: true },
+                            { t: "Create a new household for the survey response.", c: false },
+                            { t: "Send the family a new link so they can answer online.", c: false }
+                        ],
+                        exp: "Paper surveys are entered from the adult's contact record: open the survey, click Start, and fill it in from the paper copy so the response links to that contact."
+                    }
+                ]
             },
 
             {
