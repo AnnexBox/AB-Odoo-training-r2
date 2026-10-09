@@ -1668,7 +1668,98 @@
                 id: 'mod11',
                 title: "11. Reading the RTG Reports dashboard (Pivot tables, graphs, filtered and grouped lists)",
                 videoUrl: "https://drive.google.com/file/d/10FXI-y1zD5WDX6WeYW1YPRzSTgFS8PrD/preview",
-                questions: []
+                questions: [
+                    {
+                        q: "Which are the three main groups in the RTG Reports menu?",
+                        options: [
+                            { t: "Book Distribution, First Year Project, and Surveys", c: false },
+                            { t: "Program distribution, Inventory, and Returns", c: false },
+                            { t: "Book Distribution, First Year Project, and Inventory", c: true },
+                            { t: "Book Distribution, Stock, and First Year Project", c: false }
+                        ],
+                        exp: "RTG Reports is organized into Book Distribution, First Year Project, and Inventory, plus a few other reports."
+                    },
+                    {
+                        q: "Which view types are supported and recommended for the 'Books by Program' report?",
+                        options: [
+                            { t: "Pivot, Graph, or List", c: true },
+                            { t: "Pivot view only", c: false },
+                            { t: "Pivot and Graph views", c: false },
+                            { t: "Pivot, Graph, and Kanban views", c: false }
+                        ],
+                        exp: "'Books by Program' supports all three primary view types: Pivot view, Graph view, and List view."
+                    },
+                    {
+                        q: "What does switching Books by Program from Pivot to Graph view change?",
+                        options: [
+                            { t: "The data is grouped and filtered.", c: false },
+                            { t: "The same data is shown as a chart, which makes it easier to compare at a glance.", c: true },
+                            { t: "A different set of records is loaded.", c: false },
+                            { t: "The report is exported to Excel.", c: false }
+                        ],
+                        exp: "The data stays the same. Graph view just shows it as a chart, which is easier to compare at a glance."
+                    },
+                    {
+                        q: "How do default filters work for Book Distribution reports in RTG Reports?",
+                        options: [
+                            { t: "They come pre-filtered to show only completed orders from the current fiscal year.", c: false },
+                            { t: "They do not come pre-filtered; you see all records unless you add a filter yourself.", c: true },
+                            { t: "They are automatically filtered based on your user credentials.", c: false },
+                            { t: "They only display records created in the last 30 days.", c: false }
+                        ],
+                        exp: "Book Distribution reports do not come pre-filtered to a specific status or fiscal year, so you see everything unless you manually apply a filter."
+                    },
+                    {
+                        q: "For reports like 'Books by Organization', 'Books by Initiative', and 'Books by City', which views are recommended?",
+                        options: [
+                            { t: "List view only", c: false },
+                            { t: "Pivot or Graph view", c: true },
+                            { t: "Calendar or Activity view", c: false },
+                            { t: "Spreadsheet view only", c: false }
+                        ],
+                        exp: "For breakdown reports such as Books by Organization, Initiative, City, or Purpose, the recommended views are Pivot and Graph (even if a List view icon appears, it should not be used)."
+                    },
+                    {
+                        q: "What data does the 'Postage Costs' report display, and in which view?",
+                        options: [
+                            { t: "It shows cost and number of books delivered in a Pivot view, broken down by program and household or organization.", c: true },
+                            { t: "It lists donor names and delivery dates in a List view.", c: false },
+                            { t: "It displays a bar chart of book unit prices in a Graph view.", c: false },
+                            { t: "It lists of every delivery, with cost, number of books delivered, program, and household or organization.", c: false }
+                        ],
+                        exp: "The 'Postage Costs' report is a pivot table showing cost and the number of books delivered, broken down by program and by household or organization."
+                    },
+                    {
+                        q: "Where does the data in the Donations Received report come from?",
+                        options: [
+                            { t: "From the receipts created when entering donated books", c: true },
+                            { t: "From the Book Requests that were completed", c: false },
+                            { t: "From the First Year mailing lists", c: false },
+                            { t: "From the surveys filled in by families", c: false }
+                        ],
+                        exp: "Donations Received pulls from the receipts created in the donations video, showing who donated what and when."
+                    },
+                    {
+                        q: "Which column shows you the amount of books available in the 'Current Stock Levels' inventory report?",
+                        options: [
+                            { t: "Quantity", c: false },
+                            { t: "On-Hand", c: true },
+                            { t: "Copies", c: false },
+                            { t: "Available", c: false }
+                        ],
+                        exp: "In the 'Current Stock Levels' inventory report (List view), the column 'On-Hand'is the one that shows how many copies of each title are currently in stock."
+                    },
+                    {
+                        q: "Which view format is designated for First Year Project reports like '3-Month Mailing' and '12-Month Mailing'?",
+                        options: [
+                            { t: "Pivot view", c: false },
+                            { t: "Graph view", c: false },
+                            { t: "List view", c: true },
+                            { t: "Hierarchy view", c: false }
+                        ],
+                        exp: "First Year Project reports are all structured to be viewed as Lists."
+                    },
+                ]
             },
 
             {
