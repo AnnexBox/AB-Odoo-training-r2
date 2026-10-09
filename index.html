@@ -1853,8 +1853,109 @@
             {
                 id: 'mod13',
                 title: "13. Purchase orders, inventory updates and adding new books to the catalog",
-                videoUrl: "",
-                questions: []
+                videoUrl: "https://drive.google.com/file/d/1xARVf_LciBf_9aSOel2Ho7vcJpqenH6R/preview",
+                questions: [
+                    {
+                        q: "Why do you often need to add a new title to the catalog before buying copies?",
+                        options: [
+                            { t: "Because a book must exist as a product before it can be put on a purchase order.", c: true },
+                            { t: "Because Odoo creates the vendor from the title automatically.", c: false },
+                            { t: "Because the receipt can only be validated after the title is saved as a variant.", c: false },
+                            { t: "Because purchase orders only accept books from the Gently Used Books collection.", c: false }
+                        ],
+                        exp: "A new title has to exist in the system as a product before you can add it to a purchase order."
+                    },
+                    {
+                        q: "Where do you start creating a new book title?",
+                        options: [
+                            { t: "Purchase app > Create new title", c: false },
+                            { t: "Inventory app > New Product", c: false },
+                            { t: "Inventory app > Product Variants > New", c: false },
+                            { t: "Inventory app > Products > New", c: true }
+                        ],
+                        exp: "Open the Inventory app, go to Products, and click New. Product Variants are created from the main product, so you don't start there."
+                    },
+                    {
+                        q: "What happens if you skip the Track Inventory box?",
+                        options: [
+                            { t: "The ISBN can't be saved.", c: false },
+                            { t: "The language variants are not created.", c: false },
+                            { t: "The purchase order can't be confirmed, it's a required field.", c: false },
+                            { t: "Odoo doesn't track the quantity on hand.", c: true }
+                        ],
+                        exp: "Track Inventory tells Odoo to track the quantity on hand for the product. Without it, inventory counts won't work right."
+                    },
+                    {
+                        q: "Where do you add the Language to a new title?",
+                        options: [
+                            { t: "On the Attributes & Variants tab", c: true },
+                            { t: "On the Languages tab", c: false },
+                            { t: "On the Genres & Variants tab", c: false },
+                            { t: "On the Languages & Variants tab", c: false }
+                        ],
+                        exp: "On the Attributes & Variants tab, add a line for Language and enter the editions you expect to carry, such as English and Spanish."
+                    },
+                    {
+                        q: "What does adding values to the Language attribute create?",
+                        options: [
+                            { t: "A separate product for each language edition", c: false },
+                            { t: "A separate product variant for each language edition", c: true },
+                            { t: "A separate author for each language", c: false },
+                            { t: "A separate publisher for each language", c: false }
+                        ],
+                        exp: "The Language attribute creates a separate variant for each edition."
+                    },
+                    {
+                        q: "After saving the product, what do you do in the product variants?",
+                        options: [
+                            { t: "Open each variant and set its Author.", c: false },
+                            { t: "Open each variant and set its ISBN.", c: true },
+                            { t: "Open each variant and set its Language.", c: false },
+                            { t: "Assign each variant to the vendor.", c: false }
+                        ],
+                        exp: "Each language edition gets its own ISBN. The scanner and search rely on it everywhere else in Odoo."
+                    },
+                    {
+                        q: "Where do you create a new purchase order?",
+                        options: [
+                            { t: "Inventory app > Operations > Purchase Orders", c: false },
+                            { t: "Purchase app > Orders > Purchase Orders > New", c: true },
+                            { t: "Purchase app > Orders > Requests for Quotation > New", c: false },
+                            { t: "Purchase app > Products > New", c: false }
+                        ],
+                        exp: "Open the Purchase app, go to Orders, then Purchase Orders, and click New."
+                    },
+                    {
+                        q: "A vendor isn't showing up in the Vendor list. What should you check?",
+                        options: [
+                            { t: "That the vendor's contact has the Vendor checkbox turned on", c: true },
+                            { t: "That the vendor has a phone number", c: false },
+                            { t: "That the vendor has at least one Book Request", c: false },
+                            { t: "That the vendor has a valid email address", c: false }
+                        ],
+                        exp: "If a vendor isn't showing, their contact needs the Vendor checkbox turned on. You can see every current vendor under Orders > Vendors."
+                    },
+                    {
+                        q: "What happens when you click Confirm Order on a purchase order?",
+                        options: [
+                            { t: "The books are added to inventory immediately.", c: false },
+                            { t: "Odoo creates the receipt automatically.", c: true },
+                            { t: "The vendor is marked as paid.", c: false },
+                            { t: "The purchase order is deleted and a Book Request is created.", c: false }
+                        ],
+                        exp: "Confirming the order makes Odoo create the receipt automatically."
+                    },
+                    {
+                        q: "When the books physically arrive, what do you do?",
+                        options: [
+                            { t: "Go to inventory and add the books manually.", c: false },
+                            { t: "Mark the purchase order as Complete.", c: false },
+                            { t: "Open the receipt and click Validate.", c: true },
+                            { t: "Create a donation receipt with the vendor as the donor.", c: false }
+                        ],
+                        exp: "Open the receipt (from the Receipt button on the purchase order) and click Validate. This adds the books to inventory."
+                    }
+                ]
             },
 
             {
