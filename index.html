@@ -1765,8 +1765,89 @@
             {
                 id: 'mod12',
                 title: "12. Building a simple custom report",
-                videoUrl: "",
-                questions: []
+                videoUrl: "https://drive.google.com/file/d/1vQ5yMWrjdf21pSTXEpAgwxxqimeuaBBi/preview",
+                questions: [
+                    {
+                        q: "What is the difference between adjusting an existing report and asking for a custom report?",
+                        options: [
+                            { t: "Adjusting an existing report needs a ticket to the dev team; a custom report can be built by any user.", c: false },
+                            { t: "Both need a code change, but a custom report takes longer.", c: false },
+                            { t: "Adjusting a report that's already in RTG Reports is quick and needs nothing from the dev team; a brand-new report in that menu for everyone requires a code change.", c: true },
+                            { t: "There is no difference; both are done from the Filters menu.", c: false }
+                        ],
+                        exp: "Tweaking an existing report is quick and needs no dev help. A new report that appears in the RTG Reports menu for everyone is a custom report and requires a code change (a ticket to Tyla)."
+                    },
+                    {
+                        q: "You want to see the Books by Program report only for Bookmobile. What should you use, since none of the default filters work?",
+                        options: [
+                            { t: "The Group By option set to Program", c: false },
+                            { t: "A Custom Filter: RTG Program is equal to Bookmobile", c: true },
+                            { t: "The Measures menu in Pivot view", c: false },
+                            { t: "The Export option under Actions", c: false }
+                        ],
+                        exp: "When the default filters don't fit, add a Custom Filter from the search bar, such as RTG Program is equal to Bookmobile."
+                    },
+                    {
+                        q: "You check or uncheck columns in a list view using the columns icon. Who sees that change?",
+                        options: [
+                            { t: "Everyone who opens the same report", c: false },
+                            { t: "Only you; it doesn't affect anyone else's view", c: true },
+                            { t: "Only users in the same program", c: false },
+                            { t: "Nobody, because the change can't be saved", c: false }
+                        ],
+                        exp: "Changing the visible columns only changes what you see and doesn't affect anyone else's view."
+                    },
+                    {
+                        q: "How do you break the Bookmobile records out by city?",
+                        options: [
+                            { t: "Add a Group By in the search bar and choose City.", c: true },
+                            { t: "Add a second Custom Filter for each city.", c: false },
+                            { t: "Export the list and sort it in Excel.", c: false },
+                            { t: "Change the Customer Type to Organization.", c: false }
+                        ],
+                        exp: "After filtering, add a Group By from the search bar and choose City to see the records grouped by city."
+                    },
+                    {
+                        q: "After grouping by city, how can you see the data aggregated?",
+                        options: [
+                            { t: "By expanding the grouped rows to see the aggregated data", c: false },
+                            { t: "By switching to Pivot or Graph view, if that view is supported on the report", c: true },
+                            { t: "By exporting the data to Excel", c: false },
+                            { t: "By creating a user report with that grouped data", c: false }
+                        ],
+                        exp: "Pivot or Graph view shows the grouped data aggregated, as long as the report supports those views."
+                    },
+                    {
+                        q: "How do you save a customized report so you can find it again?",
+                        options: [
+                            { t: "Create a new report and select 'current view'.", c: false },
+                            { t: "Export the current view to Excel and link it to Odoo so it updates automatically.", c: false },
+                            { t: "Save the current search as a favorite", c: true },
+                            { t: "Ask for a custom report to be made.", c: false }
+                        ],
+                        exp: "Save the current search as a favorite, give it a name, and it will always be available in your favorite searches."
+                    },
+                    {
+                        q: "Which are two ways to get the data of a customized report into Excel?",
+                        options: [
+                            { t: "The Download icon in Pivot view, or select rows in List view and click Actions > Export", c: true },
+                            { t: "The Import wizard", c: false },
+                            { t: "The Download icon in List view, or the Export button in Pivot view", c: false },
+                            { t: "The Export button in Graph view", c: false }
+                        ],
+                        exp: "Use the download icon from Pivot view, or select rows in List view and go to Actions > Export."
+                    },
+                    {
+                        q: "When there is no existing report to start from, where should you begin building a one-off answer?",
+                        options: [
+                            { t: "In the RTG Reports menu", c: false },
+                            { t: "In a regular list view", c: true },
+                            { t: "In any Pivot view", c: false },
+                            { t: "In the User Reports menu", c: false }
+                        ],
+                        exp: "For a one-off answer, start from a regular list view such as Book Requests, Contacts, or Products, not from RTG Reports."
+                    }
+                ]
             },
 
             {
