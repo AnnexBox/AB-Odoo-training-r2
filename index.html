@@ -1962,7 +1962,78 @@
                 id: 'mod14',
                 title: "14. Adjusting inventory & transfers",
                 videoUrl: "",
-                questions: []
+                questions: [
+                    {
+                        q: "Why do transfers between programs matter at Read to Grow?",
+                        options: [
+                            { t: "Because each program holds its own stock of the same title in its own location.", c: true },
+                            { t: "Because every title can only belong to one program.", c: false },
+                            { t: "Because transfers are the only way to create a new product.", c: false },
+                            { t: "Because Odoo deletes unused stock after a period of time.", c: false }
+                        ],
+                        exp: "The same title can have copies in several programs. Books for Babies, Books for Kids, and Bookmobile each hold their own stock in their own location."
+                    },
+                    {
+                        q: "Which tool do you use to move books from one program to another?",
+                        options: [
+                            { t: "A program transfer", c: false },
+                            { t: "A product transfer", c: false },
+                            { t: "A warehouse transfer", c: false },
+                            { t: "An internal transfer", c: true }
+                        ],
+                        exp: "A transfer moves books from one program to another. You find them under Inventory > Operations > Transfers > Internal."
+                    },
+                    {
+                        q: "What does the Operations tab show on an existing transfer record?",
+                        options: [
+                            { t: "The exact books and quantities that moved", c: true },
+                            { t: "The source and destination locations", c: false },
+                            { t: "The vendor and the price of each book", c: false },
+                            { t: "The family that requested the books", c: false }
+                        ],
+                        exp: "The Operations tab lists the books and quantities involved in the transfer."
+                    },
+                    {
+                        q: "What does the quantity requested field represent in a transfer?",
+                        options: [
+                            { t: "The quantity currently on hand in the warehouse", c: false },
+                            { t: "The quantity that was discarded", c: false },
+                            { t: "The quantity of the product that is planned to be moved", c: true },
+                            { t: "The quantity already delivered to families", c: false }
+                        ],
+                        exp: "The quantity requested field shows the demand, which is the quantity planned to be moved."
+                    },
+                    {
+                        q: "When do you click Mark as Delivered on an internal transfer?",
+                        options: [
+                            { t: "As soon as you create the transfer", c: false },
+                            { t: "At the date scheduled for the transfer", c: false },
+                            { t: "When the books have physically moved", c: true },
+                            { t: "Together with the annual count", c: false }
+                        ],
+                        exp: "Click Mark as Delivered once the books have physically moved. The stock in each program updates."
+                    },
+                    {
+                        q: "Where do you correct the numbers when what's in the warehouse doesn't match what Odoo says?",
+                        options: [
+                            { t: "Operations > Adjustments > Physical Inventory", c: true },
+                            { t: "Reporting > Moves History", c: false },
+                            { t: "Operations > Adjustments > Inventory Adjustments", c: false },
+                            { t: "Operations > Adjustments > Inventory Counts", c: false }
+                        ],
+                        exp: "A physical inventory count, found under Operations > Adjustments > Physical Inventory, corrects the numbers."
+                    },
+                    {
+                        q: "Where do you check where everything stands after a transfer or a count, and confirm that a transfer actually happened?",
+                        options: [
+                            { t: "In the Reporting menu > Moves History", c: true },
+                            { t: "In the Reporting menu > Stock", c: false },
+                            { t: "In the RTG Reports App > Inventory > Current Stock Levels", c: false },
+                            { t: "In the Reporting menu > Locations", c: false }
+                        ],
+                        exp: "The Reporting menu is where you check the result. Moves History lists every movement, so it confirms that a transfer actually happened."
+                    }
+                ]
             },
 
         ];
