@@ -571,6 +571,115 @@
 
 
         const modules = [
+            {
+                id: 'mod0',
+            
+                title: "0. How to use Google Meet",
+            
+                videoUrl: "",
+            
+                questions: [
+            
+                    {
+                        q: "What is the easiest way to schedule a meeting?",
+            
+                        options: [
+                            { t: "Sending a chat message to each participant with a time and a phone number.", c: false },
+                            { t: "Creating an event in Google Calendar and adding Google Meet video conferencing.", c: true },
+                            { t: "Starting an instant meeting and sharing the link with guests through a message or email.", c: false },
+                            { t: "Writing the meeting code in the guest list of a shared document.", c: false }
+                        ],
+            
+                        exp:
+                            "The easiest way is from Google Calendar: click a time slot or Create > Event, give it a clear title, choose the date and time, and add Google Meet video conferencing."
+                    },
+            
+                    {
+                        q: "What does clicking 'Add Google Meet video conferencing' in a Calendar event do?",
+            
+                        options: [
+                            { t: "It automatically starts the meeting for all guests.", c: false },
+                            { t: "It sends the invitation to every contact added to the event.", c: false },
+                            { t: "It creates the meeting link for you.", c: true },
+                            { t: "It installs the Google Meet app for you.", c: false }
+                        ],
+            
+                        exp:
+                            "Adding Google Meet video conferencing generates the meeting link automatically, so you don't have to create it separately."
+                    },
+            
+                    {
+                        q: "If you need to share the meeting link with a new guest not included in the original invitation, what can you do?",
+            
+                        options: [
+                            { t: "Open the event and copy the joining information to paste in an email or message.", c: true },
+                            { t: "Take a screenshot of the Calendar and send it to the new guest.", c: false },
+                            { t: "Ask each guest to create their own meeting and share it back.", c: false },
+                            { t: "Delete the event and create a new with the updated guest list.", c: false }
+                        ],
+            
+                        exp:
+                            "You can open the event, copy the joining information, and paste it into an email or any message."
+                    },
+            
+                    {
+                        q: "How can you join a meeting if you only have the meeting code?",
+            
+                        options: [
+                            { t: "Type the code in the Google Calendar search bar.", c: false },
+                            { t: "Click 'New meeting' at meet.google.com and enter the code.", c: false },
+                            { t: "Send the code to the host so they add you manually from the People panel.", c: false },
+                            { t: "Go to meet.google.com and type the code, which is the group of letters at the end of the link.", c: true }
+                        ],
+            
+                        exp:
+                            "At meet.google.com you can type the meeting code, which is the group of letters at the end of the meeting link."
+                    },
+            
+                    {
+                        q: "On the preview screen before joining, what does a red microphone or camera icon mean?",
+            
+                        options: [
+                            { t: "That device is turned off.", c: true },
+                            { t: "That device is not available.", c: false },
+                            { t: "That device is not compatible with Google Meet.", c: false },
+                            { t: "You don't have permissions to use that device.", c: false }
+                        ],
+            
+                        exp:
+                            "On the preview screen you can turn your camera and microphone on or off before joining, and a red icon means that device is off."
+                    },
+            
+                    {
+                        q: "What happens when you click the red button in the toolbar during a call?",
+            
+                        options: [
+                            { t: "The meeting ends for all participants.", c: false },
+                            { t: "You are muted and your camera is turned off, but you stay in the call.", c: false },
+                            { t: "You leave the call.", c: true },
+                            { t: "The host is asked to remove you from the meeting.", c: false }
+                        ],
+            
+                        exp:
+                            "The red button only makes you leave the call. The meeting continues for everyone else."
+                    },
+            
+                    {
+                        q: "Which of the following is part of the basic video call etiquette recommended in the tutorial?",
+            
+                        options: [
+                            { t: "Keep your microphone on at all times so people know you are present.", c: false },
+                            { t: "Record the meeting to make sure nothing is missed.", c: false },
+                            { t: "Mute your microphone when you are not speaking.", c: true },
+                            { t: "Keep your camera on even if your connection is slow.", c: false }
+                        ],
+            
+                        exp:
+                            "Muting your microphone when you are not speaking avoids background noise. If your connection is slow, you should turn your camera off, and you should always tell everyone before recording."
+                    }
+            
+                ]
+            },
 
             {
                 id: 'mod1',
