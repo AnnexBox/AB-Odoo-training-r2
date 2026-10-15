@@ -50,6 +50,19 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
+
+        /* Administrative training modules are visually distinct, not access-restricted. */
+        .module-card.admin-module {
+            background: #fffbeb;
+            border-color: #f3d28b;
+            border-left: 4px solid #c88724;
+        }
+
+        .module-card.admin-module:hover {
+            background: #fff7dc;
+            border-color: #c88724;
+        }
+
         .option-card {
             border: 2px solid #e2e8f0;
             border-radius: 8px;
@@ -2405,6 +2418,17 @@
                         mod.questions.length > 0;
 
 
+                    // Modules classified as Admin in the RTG training outline.
+                    // mod9 belongs to Books for Babies / Admin.
+                    const isAdminModule =
+                        ['mod9', 'mod13', 'mod14'].includes(mod.id);
+
+                    const adminLabel =
+                        mod.id === 'mod9'
+                            ? 'Books for Babies / Admin Module'
+                            : 'Admin Module';
+
+
                     const score =
                         progress[mod.id];
 
@@ -2425,7 +2449,7 @@
                             isReady
                                 ? 'module-card cursor-pointer'
                                 : 'opacity-60 bg-slate-50'
-                        }`;
+                        } ${isAdminModule ? 'admin-module' : ''}`;
 
 
                     let badgeHTML =
@@ -2451,6 +2475,12 @@
                     card.innerHTML =
                         `
                         <div class="mb-4">
+
+                            ${isAdminModule
+                                ? `<span class="inline-flex items-center gap-1 rounded-md border border-amber-300 bg-amber-100 px-2 py-1 mb-3 text-[11px] font-bold tracking-wide text-amber-900">
+                                       <span aria-hidden="true">◆</span> ${adminLabel}
+                                   </span>`
+                                : ''}
 
                             <h3 class="font-bold text-slate-800 leading-snug">
                                 ${mod.title}
